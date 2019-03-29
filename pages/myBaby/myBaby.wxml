@@ -1,0 +1,16 @@
+<view>
+   <!-- 添加宝宝 -->
+   <view class='add_baby'>
+       <image src = '../../images/11.png' catchtap='addBaby'></image>
+       <text>添加宝宝</text>
+   </view>
+   <view class='babay_msg' wx:for='{{babyList}}'>
+    <text>{{item.type}}</text>   
+    <text>{{item.value}}</text>
+  </view>
+  <text class='under_line'></text>
+  <view class='baby_content'>
+     <text class='title'>数据健康分析</text>
+     <text class='content'>宝宝是否正常发育是衡量其是否健康的重要指标，尤其是生命初期宝宝的体重、身高、头颅宽度等的观察记录更是不可忽视</text>
+  </view>
+</view>

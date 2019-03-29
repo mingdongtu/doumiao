@@ -1,0 +1,75 @@
+/* pages/vaccine/vaccine.wxss */
+
+.tab_box {
+  width: calc(100% - 80rpx);
+  margin-left: 40rpx;
+  margin-bottom: 60rpx;
+}
+
+.tab_content {
+  display: flex;
+  /* width:100%; */
+}
+
+.card {
+  width: calc(25% - 20rpx);
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* margin-right:16rpx; */
+  padding: 0px 10rpx;
+}
+
+.card image {
+  width: 120rpx;
+  height: 120rpx;
+  display: inline-block;
+  margin-bottom: 10rpx;
+}
+
+.under_line {
+  display: block;
+  width: 100%;
+  height: 6rpx;
+  background: #eee;
+  margin-bottom: 20rpx;
+}
+
+.card text {
+  font-size: 24rpx;
+}
+
+.food {
+  padding: 20rpx;
+  display: flex;
+}
+
+.food>view {
+  width: calc(100% - 220rpx);
+  margin-right: 20rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-size: 30rpx;
+}
+
+.delete {
+  width: 40rpx;
+  height: 40rpx;
+}
+
+.news_img {
+  width: 200rpx;
+  height: 200rpx;
+}
+
+.tip_msg text {
+  display: block;
+}
+
+.comment {
+  display: flex;
+  justify-content: space-between;
+}

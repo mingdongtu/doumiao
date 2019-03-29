@@ -1,0 +1,28 @@
+<!--pages/vaccine/vaccine.wxml-->
+<view>
+
+  <scroll-view scroll-x="true" class='tab_box'>
+    <view class='tab_content'>
+      <view wx:for="{{tab_list}}" class='card'>
+        <image src='{{item.src}}'></image>
+        <text>{{item.value}}</text>
+      </view>
+    </view>
+
+  </scroll-view>
+  <text class='under_line'></text>
+  <!-- 宝宝饮食建议列表 -->
+  <view class='food' wx:for='{{newsList}}'>
+    <view>
+      <view class='tip_msg'>
+        <text>{{item.title_1}}</text>
+        <text>{{item.title_2}}</text>
+      </view>
+      <view class='comment'>
+        <text>{{item.website}} {{item.commentNum}}</text>
+        <image src='../../images/5.png' class='delete'></image>
+      </view>
+    </view>
+    <image src='{{item.coverSrc}}' class='news_img'></image>
+  </view>
+</view>

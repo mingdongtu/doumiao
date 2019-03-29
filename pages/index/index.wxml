@@ -1,0 +1,44 @@
+<view class="container">
+  <view class='my_avatar'>
+    <view>
+      <image src='{{userInfo.avatarUrl}}' class='userinfo-avatar'></image>
+      <text>{{userInfo.nickName}}</text>
+    </view>
+    <text class='icon_arrow'>  </text>
+  </view>
+  <!-- 我的宝宝 -->
+  <text class='under_line'></text>
+  <view class='my_avatar my_baby' catchtap='onBaby'>
+    <view>
+      <text class='icon_baby icon_common' ></text>
+      <text>我的宝宝</text>
+    </view>
+    <text class='icon_arrow'>  </text>
+  </view>
+  <!-- 我的预约 -->
+  <view class='my_avatar my_baby'>
+    <view>
+      <text class='icon_order icon_common'></text>
+      <text>我的预约</text>
+    </view>
+    <text class='icon_arrow'>  </text>
+  </view>
+  <!-- 推荐给朋友 -->
+  <text class='under_line'></text>
+  <view class='my_avatar recommend'>
+    <view>
+      <text class='icon_recommend icon_common'></text>
+      <text>推荐给朋友</text>
+    </view>
+    <text class='icon_arrow'>  </text>
+  </view>
+  <text class='under_line'></text>
+  <!-- 设置 -->
+  <view class='my_avatar recommend'>
+    <view>
+      <text class='icon_set icon_common'></text>
+      <text>设置</text>
+    </view>
+    <text class='icon_arrow'>  </text>
+  </view>
+</view>

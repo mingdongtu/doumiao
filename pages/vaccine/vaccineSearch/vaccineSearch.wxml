@@ -1,0 +1,28 @@
+<view class='all_input'>
+  <view class='common'>
+    <view>
+      <text>疫苗名称</text>
+      <input placeholder='必填' placeholder-style='color:#ccc;'></input>
+    </view>
+    <image src='../../../images/17.png' class='arrow'></image>
+  </view>
+
+  <view class='common'>
+    <view>
+      <text>疫苗批号</text>
+      <input placeholder='必填' placeholder-style='color:#ccc;'></input>
+    </view>
+  </view>
+
+  <view class='common'>
+    <view>
+      <text>生产企业</text>
+      <picker class='picker' mode='selector' bindchange="bindPickerChange" range='{{companys}}' value='{{idx}}'>
+        <view>请选择 {{companys[idx]}}</view>
+      </picker>
+    </view>
+    <image src='../../../images/17.png' class='arrow'></image>
+  </view>
+</view>
+
+<view class='search_vaccine'>疫苗查询</view>

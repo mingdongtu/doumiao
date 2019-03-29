@@ -1,0 +1,50 @@
+<view class='register'>
+  <view class='title'>
+    <text>您正在进行'白日破疫苗（出生30-100天的婴儿）'接种咨询预约服务，请确认后登记</text>
+  </view>
+  <view class='all_input'>
+    <view>
+      <text>接种人姓名</text>
+      <input placeholder='必填' placeholder-style='text-align:right;' class='input_1'></input>
+    </view>
+    <view class='all_picker'>
+      <text>您与接种人关系</text>
+      <view>
+        <picker class='picker' mode='selector' bindchange="bindPickerChange" range='{{relations}}' value='{{idx}}'>
+          <view>{{relations[idx]}}</view>
+        </picker>
+        <image src='../../../images/17.png' class='arrow'></image>
+      </view>
+    </view>
+
+    <view class='all_picker'>
+      <text>接种人出生日期</text>
+      <view>
+        <picker class='picker' mode='date' value="{{date}}" start="2015-09-01" end="2017-09-01" bindchange="bindDateChange">
+          <view>{{date}}</view>
+        </picker>
+        <image src='../../../images/17.png' class='arrow'></image>
+      </view>
+    </view>
+    <view class='all_picker'>
+      <text>接种人性别</text>
+      <view>
+        <picker class='picker' mode='selector' bindchange="bindSexChange" range='{{sexs}}' value='{{index}}'>
+          <view>{{sexs[index]}}</view>
+        </picker>
+        <image src='../../../images/17.png' class='arrow'></image>
+      </view>
+    </view>
+  </view>
+
+  <view class='tip'>该接种点有疫苗，可直接预约接种咨询日期</view>
+  <view class='order'>
+    <radio-group class="radio-group" bindchange="radioChange">
+      <label class="radio" >
+        <radio value="单选" checked="{{item.checked}}" checked='{{isChecked}}' /> 
+        本人同意登记开通疫苗预约咨询服务，并向服务机构授权。若不同意请不要登记。
+      </label>
+    </radio-group>
+    <view class='search_vaccine'>确认预约</view>
+  </view>
+</view>

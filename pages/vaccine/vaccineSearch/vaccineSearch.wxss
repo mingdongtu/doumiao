@@ -1,0 +1,36 @@
+/* pages/vaccine/vaccineSearch/vaccineSearch.wxss */
+.all_input{
+  font-size:30rpx;
+  padding:20rpx;
+}
+.arrow{
+  width:30rpx;
+  height:30rpx;
+}
+.common{
+   display:flex;
+   justify-content: space-between;
+   align-items:center;
+   margin-bottom: 40rpx;
+}
+.common>view{
+    display:flex;
+    align-items:center;
+}
+.common>view>text {
+  margin-right:20rpx;
+}
+.picker{
+  color:#ccc;
+}
+.search_vaccine{
+  width: calc(100% - 80rpx);
+  margin-left: 40rpx;
+  height: 70rpx;
+  line-height: 70rpx;
+  margin-top: 60rpx;
+  border-radius:40rpx;
+  background: rgb(211, 207, 207);
+  color: rgb(66, 63, 63);
+  text-align:center;
+}

@@ -1,0 +1,74 @@
+.select {
+  padding-top: 30rpx;
+}
+
+.city {
+  display: flex;
+  align-items: center;
+  padding: 20rpx;
+}
+
+.city image {
+  width: 40rpx;
+  height: 40rpx;
+  margin-right: 20rpx;
+}
+
+.picker {
+  font-size: 30rpx;
+}
+
+.common {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20rpx;
+}
+
+.common image {
+  width: 40rpx;
+  height: 40rpx;
+}
+
+.common image:nth-of-type(1) {
+  margin-right: 20rpx;
+}
+
+.common>view {
+  display: flex;
+  align-items: center;
+}
+
+.scan image:nth-of-type(2) {
+  margin-left: 20rpx;
+}
+
+.scan input {
+  width: 560rpx;
+}
+.veri_code input{
+  width:300rpx;
+}
+.verification {
+  display: inline-block;
+  height: 60rpx;
+  width: 120rpx;
+  background: rgb(211, 207, 207);
+  color: rgb(66, 63, 63);
+  text-align: center;
+  letter-spacing: 6rpx;
+  line-height: 60rpx;
+}
+
+.confirm {
+  display: block;
+  width: calc(100% - 80rpx);
+  margin-left: 40rpx;
+  height: 70rpx;
+  line-height: 70rpx;
+  margin-top: 60rpx;
+  border-radius:40rpx;
+  background: rgb(211, 207, 207);
+  color: rgb(66, 63, 63);
+  text-align:center;
+}

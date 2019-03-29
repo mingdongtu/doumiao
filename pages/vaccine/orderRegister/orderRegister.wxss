@@ -1,0 +1,66 @@
+/* pages/vaccine/orderRegister/orderRegister.wxss */
+
+.title {
+  background: rgb(211, 207, 207);
+  padding: 20rpx 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 40rpx;
+}
+
+.title>text {
+  font-size: 30rpx;
+  display: inline-block;
+  width: 80%;
+  text-align: center;
+}
+
+.all_input {
+  font-size: 30rpx;
+}
+
+.all_input>view {
+  padding: 20rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.arrow {
+  width: 30rpx;
+  height: 30rpx;
+  margin-left: 10rpx;
+}
+
+.input_1 {
+  width: 180rpx;
+}
+
+.all_picker>view {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.tip{
+  margin-left:20rpx;
+  font-size:30rpx;
+  margin-top:20rpx;
+}
+.order{
+  font-size:30rpx;
+  padding:20rpx;
+  position:fixed;
+  bottom:60rpx;
+}
+.search_vaccine{
+  width: calc(100% - 80rpx);
+  margin-left: 40rpx;
+  height: 70rpx;
+  line-height: 70rpx;
+  margin-top: 60rpx;
+  border-radius:40rpx;
+  background: rgb(211, 207, 207);
+  color: rgb(66, 63, 63);
+  text-align:center;
+}
