@@ -1,15 +1,25 @@
-<text class='under_line'></text>
-<view>
-  <view>
-    <text>深圳市南山区高新园大冲国际中心</text>
+<view class='order_list' wx:for='{{orderList}}'>
+  <text class='under_line'></text>
+  <view class='location'>
+    <text>{{item.location_1}}</text>
     <view>
-      <text>10公里</text>
-      <text>E座20楼</text>
+      <text>{{item.distance}}</text>
+      <text>{{item.location_2}}</text>
     </view>
-    <text>营业时间：08:30-21:30</text>
+    <text>营业时间：{{item.time}}</text>
   </view>
-  <view>
-     <view></view>
-     <text>预约登记</text>
+  <view class='my_order'>
+    <view class='map_phone'>
+      <view>
+        <image src='../../../images/18.png'></image>
+        <text>地图</text>
+      </view>
+      <view>
+        <image src='../../../images/19.png'></image>
+        <text>致电</text>
+      </view>
+    </view>
+    <view class='order_btn'>预约登记</view>
   </view>
+  <!-- <text class='under_line'></text> -->
 </view>

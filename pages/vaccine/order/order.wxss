@@ -1,6 +1,72 @@
-.under_line{
-  display:block;
-  width:100%;
-  height:6rpx;
+.under_line {
+  display: block;
+  width: 100%;
+  height: 6rpx;
   background: #eee;
+  margin-bottom:30rpx;
+}
+view{
+  /* box-sizing:border-box; */
+
+}
+.map_phone image {
+  width: 40rpx;
+  height: 40rpx;
+  margin-right: 20rpx;
+}
+
+.order_list {
+  padding: 0rpx 0rpx 0rpx 20rpx;
+}
+
+.location{
+  padding-bottom:30rpx;
+}
+
+.location>view, .location>text:nth-of-type(2) {
+  font-size: 30rpx;
+  color: #ccc;
+}
+
+.location>view>text:nth-of-type(1) {
+  padding-right: 20rpx;
+  border-right: 4rpx solid #ccc;
+}
+
+.location>view>text:nth-of-type(2) {
+  padding-left: 20rpx;
+}
+
+.location>view>text {
+  display: inline-block;
+  height: 28rpx;
+  line-height: 28rpx;
+}
+
+.my_order {
+  display: flex;
+}
+
+.map_phone {
+  width: 60%;
+  display: flex;
+  border-top: 2rpx solid #eee;
+}
+
+.map_phone>view {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100rpx;
+}
+
+.order_btn {
+  width: 40%;
+  height: 100rpx;
+  line-height: 100rpx;
+  text-align: center;
+  background: rgb(211, 207, 207);
+  color:#fff;
+  font-weight:bold;
 }

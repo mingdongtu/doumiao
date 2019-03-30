@@ -1,11 +1,13 @@
 {
   "pages": [
+    "pages/index/index",
+    "pages/vaccine/vaccine",
+    "pages/vaccine/map/map",
     "pages/vaccine/order/order",
     "pages/vaccine/orderRegister/orderRegister",
     "pages/vaccine/vaccineSearch/vaccineSearch",
-    "pages/index/index",
+    
     "pages/addBaby/addBaby",
-    "pages/vaccine/vaccine",
     "pages/logs/logs",
     "pages/myBaby/myBaby"
   ],

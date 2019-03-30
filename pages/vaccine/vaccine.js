@@ -7,9 +7,9 @@ Page({
   data: {
     tab_list:[
         {src:'../../images/9.png',value:'接种证',path:''},
-      { src: '../../images/8.png', value: '疫苗预约' },
-      { src: '../../images/7.png', value: '疫苗快查' },
-      { src: '../../images/6.png', value: '宝宝信息' }
+      { src: '../../images/8.png', value: '疫苗预约', path:'/pages/vaccine/orderRegister/orderRegister' },
+      { src: '../../images/7.png', value: '疫苗快查', path:'/pages/vaccine/vaccineSearch/vaccineSearch' },
+      { src: '../../images/6.png', value: '宝宝信息', path:'/pages/myBaby/myBaby' }
     ],
     newsList:[
       { title_1: '宝宝的胃容量有限，宜少吃多餐', title_2: '多吃蔬菜水果', website: '育儿网', commentNum: '100', coverSrc:'../../images/10.jpg'},
@@ -33,6 +33,12 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
+  onViccine(e){
+    const path = e.currentTarget.dataset.path;
+    wx.navigateTo({
+      url: path
+    })
+  },
   onReady: function () {
 
   },

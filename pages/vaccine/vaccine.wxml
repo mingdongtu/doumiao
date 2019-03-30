@@ -3,7 +3,7 @@
 
   <scroll-view scroll-x="true" class='tab_box'>
     <view class='tab_content'>
-      <view wx:for="{{tab_list}}" class='card'>
+      <view wx:for="{{tab_list}}" class='card' catchtap='onViccine' data-path = '{{item.path}}'>
         <image src='{{item.src}}'></image>
         <text>{{item.value}}</text>
       </view>

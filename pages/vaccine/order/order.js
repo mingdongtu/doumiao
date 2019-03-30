@@ -5,7 +5,14 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+     orderList:[
+       { location_1: '深圳市南山区高新园大冲国际中心', distance: '10公里', location_2: 'E座20楼', time:'08:30-21:30'},
+       { location_1: '深圳市南山区高新园大冲国际中心', distance: '10公里', location_2: 'E座20楼', time: '08:30-21:30' },
+       { location_1: '深圳市南山区高新园大冲国际中心', distance: '10公里', location_2: 'E座20楼', time: '08:30-21:30' },
+       { location_1: '深圳市南山区高新园大冲国际中心', distance: '10公里', location_2: 'E座20楼', time: '08:30-21:30' },
+       { location_1: '深圳市南山区高新园大冲国际中心', distance: '10公里', location_2: 'E座20楼', time: '08:30-21:30' },
+       { location_1: '深圳市南山区高新园大冲国际中心', distance: '10公里', location_2: 'E座20楼', time: '08:30-21:30' }
+     ]
   },
 
   /**
