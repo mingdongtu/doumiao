@@ -10,10 +10,14 @@ Page({
     canIUse: wx.canIUse('button.open-type.getUserInfo')
   },
   //事件处理函数
- 
+  onNotice(){
+      wx.navigateTo({
+        url: '/pages/notice/notice',
+      })
+  },
   onBaby(){
     wx.navigateTo({
-        url:'../myBaby/myBaby'
+        url:'../myBaby/baby/baby'
     })
   },
   onSet(){

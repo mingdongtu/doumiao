@@ -1,0 +1,20 @@
+.notice_list >text{
+  display:block;
+  text-align:center;
+  padding:25rpx;
+  font-size:36rpx;
+  background: #eee;
+}
+.notice_list>view{
+  padding:25rpx 20rpx;
+}
+.title{
+  font-size:40rpx;
+  display:block;
+  margin-bottom:16rpx;
+}
+.content{
+  font-size:36rpx;
+  display:block;
+  line-height:56rpx;
+}

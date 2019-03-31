@@ -1,0 +1,22 @@
+<view class='main'>
+  <view class='box' wx:for='{{babyList}}' catchtap='onBabyMsg'>
+    <view class='baby {{item.edit}}' >
+      <view class='left'>
+        <view class='avatar'>
+          <image src='{{item.imgsrc}}'></image>
+        </view>
+        <view class='name'>
+          <text>{{item.name}}</text>
+          <text>{{item.age}}</text> </view>
+      </view>
+      <view class='edit' catchtap='onEdit' data-index ="{{index}}" >
+        <image src='../../../images/edit.png'></image>
+      </view>
+    </view>
+    <!-- 删除 -->
+    <view class='delete'>
+      <image src='../../../images/delete.png'></image>
+      <text>删除</text>
+    </view>
+  </view>
+</view>

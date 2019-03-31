@@ -1,0 +1,37 @@
+<text class='line'></text>
+<view class='status'>
+  <!-- <image src='../../images/23.png'></image> -->
+  <image src='../../images/24.png'></image>
+  <!-- <text>已经完成接种</text> -->
+  <text>预约已取消</text>
+</view>
+<text class='under_line'></text>
+<view class='code'>
+  <view>
+    <text>预约编号</text>
+    <text>199121311990111</text>
+  </view>
+  <view>
+    <text>宝宝姓名</text>
+    <text>可爱的吉娃娃</text>
+  </view>
+</view>
+<text class='under_line'></text>
+<view class='code'>
+  <view>
+    <text>预约接种地点</text>
+    <text>宝安区中医院宝芝林</text>
+  </view>
+  <view>
+    <text>预约Ï时间</text>
+    <text>2019-01-04 09:00-09:30</text>
+  </view>
+</view>
+<view class='tip'> 
+   <text>温馨提示</text>
+</view>
+<view class='tip_content'>
+  <text>1.接种疫苗仅预约到门诊的接种时段，接种疫苗以门诊医生为准，价格详见接种门诊公示。</text>
+  <text>2.如未在规定预约时间取号，请提前两小时取消，超时未取消，系统将记为爽约，超过3次将无法使用预约功能。</text>
+  <text>3.如没有在预约时间内登记取号，预约作废，请按照门诊正常流程重新排队。</text>
+</view>

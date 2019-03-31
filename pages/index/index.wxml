@@ -5,7 +5,7 @@
       <text class='my_name'>{{userInfo.nickName}}</text>
       <text class='icon_arrow'>  </text>
     </view>
-    <view class='notification'>
+    <view class='notification' catchtap='onNotice'>
       <text class='num'>2</text>
       <image src='../../images/22.png' ></image>
     </view>

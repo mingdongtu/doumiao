@@ -2,6 +2,8 @@
   "pages": [
     
     "pages/index/index",
+    "pages/myBaby/baby/baby",
+    "pages/notice/notice",
     "pages/vaccine/vaccine",
     "pages/vaccine/map/map",
     "pages/vaccine/order/order",
@@ -11,8 +13,9 @@
     "pages/logs/logs",
     "pages/myBaby/myBaby",
     "pages/advise/advise",
+    "pages/orderDetail/orderDetail",
     "pages/set/set"
-    
+  
   ],
   "window": {
     "backgroundTextStyle": "light",

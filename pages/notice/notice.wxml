@@ -1,0 +1,7 @@
+<view class='notice_list' wx:for='{{noticeList}}'>
+  <text>{{item.time}}</text>
+  <view catchtap='onDetail'>
+    <text class='title'>通知</text>
+    <text class='content'>{{item.content}}</text>
+  </view>
+</view>
