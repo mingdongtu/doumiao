@@ -16,6 +16,11 @@ Page({
         url:'../myBaby/myBaby'
     })
   },
+  onSet(){
+     wx.navigateTo({
+       url: '/pages/set/set'
+     })
+  },
   onLoad: function () {
     if (app.globalData.userInfo) {
       this.setData({

@@ -2,15 +2,19 @@
   <view class='my_avatar'>
     <view>
       <image src='{{userInfo.avatarUrl}}' class='userinfo-avatar'></image>
-      <text>{{userInfo.nickName}}</text>
+      <text class='my_name'>{{userInfo.nickName}}</text>
+      <text class='icon_arrow'>  </text>
     </view>
-    <text class='icon_arrow'>  </text>
+    <view class='notification'>
+      <text class='num'>2</text>
+      <image src='../../images/22.png' ></image>
+    </view>
   </view>
   <!-- 我的宝宝 -->
   <text class='under_line'></text>
   <view class='my_avatar my_baby' catchtap='onBaby'>
     <view>
-      <text class='icon_baby icon_common' ></text>
+      <text class='icon_baby icon_common'></text>
       <text>我的宝宝</text>
     </view>
     <text class='icon_arrow'>  </text>
@@ -34,7 +38,7 @@
   </view>
   <text class='under_line'></text>
   <!-- 设置 -->
-  <view class='my_avatar recommend'>
+  <view class='my_avatar recommend' catchtap='onSet'>
     <view>
       <text class='icon_set icon_common'></text>
       <text>设置</text>

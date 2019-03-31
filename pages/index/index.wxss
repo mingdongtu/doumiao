@@ -70,3 +70,36 @@
  .recommend{
     height:160rpx !important;
  }
+ .my_name{
+    margin-right:20rpx;
+ }
+ .notification{
+   width:60rpx;
+   height:60rpx;
+   display: flex;
+   justify-content:center;
+   align-items: center;
+   border:2rpx solid #eee;
+   border-radius:50%;
+   margin-right:40rpx;
+   position:relative;
+ }
+ .notification>text{
+    position:absolute;
+    color:#fff;
+    font-size:24rpx;
+    display:inline-block;
+    width:30rpx;
+    height:30rpx;
+    background:red;
+    text-align:center;
+    line-height:30rpx;
+    border-radius:50%;
+    right:-10rpx;
+    top:-10rpx;
+ }
+ .notification image{
+   width:40rpx;
+   height:40rpx;
+   
+ }

@@ -1,0 +1,115 @@
+/* pages/advise/advise.wxss */
+
+.main {
+  padding-top: 2rpx;
+  background: #eee;
+  height: 100vh;
+  font-size:30rpx;
+}
+
+.under_line {
+  display: block;
+  width: 100%;
+  height: 20rpx;
+  background: #eee;
+}
+
+.problem {
+  font-size: 30rpx;
+  padding: 20rpx 20rpx 30rpx 20rpx;
+  background: #fff;
+}
+
+.problem>text {
+  display: block;
+  margin-bottom: 30rpx;
+}
+
+.normal>text {
+  padding: 5rpx 20rpx;
+  background: #eee;
+  margin-right: 30rpx;
+  border-radius: 20rpx;
+}
+
+textarea {
+  padding: 20rpx;
+  background: #fff;
+  width: 100%;
+  height: 288rpx;
+  display: block;
+}
+
+.add {
+  background: #fff;
+  padding: 20rpx;
+  font-size: 30rpx;
+}
+
+.add_img {
+  display: flex;
+}
+
+.upload {
+  background: #fff;
+  width: 100rpx;
+  height: 100rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #ccc;
+  margin-left: 20rpx;
+}
+
+.upload image {
+  width: 40rpx;
+  height: 40rpx;
+}
+
+.allReady {
+  width: 100rpx;
+  height: 100rpx;
+  position: relative;
+}
+
+.delete {
+  width: 40rpx;
+  height: 40rpx;
+  position: absolute;
+  left: -20rpx;
+  top: -20rpx;
+}
+
+.allReady_img {
+  width: 100%;
+  height: 100%;
+}
+.contact{
+  margin-top:20rpx;
+  background: #fff;
+  padding:20rpx;
+  display:flex;
+  font-size:30rpx;
+  align-items: center;
+}
+.contact>text{
+  margin-right:20rpx;
+}
+.tip{
+  display:block;
+  padding:20rpx;
+  /* margin-top:40rpx; */
+  color:#ccc;
+}
+.submit{
+    display: block;
+  width: calc(100% - 80rpx);
+  margin-left: 40rpx;
+  height: 70rpx;
+  line-height: 70rpx;
+  margin-top: 60rpx;
+  border-radius:40rpx;
+  background: rgb(211, 207, 207);
+  color: rgb(66, 63, 63);
+  text-align:center;
+}

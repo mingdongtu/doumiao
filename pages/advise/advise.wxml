@@ -1,0 +1,30 @@
+<view class='main'>
+  <view class='problem'>
+    <text>反馈问题类型</text>
+    <view class='normal'>
+      <text>功能异常</text>
+      <text>功能异常</text>
+      <text>其他</text>
+    </view>
+  </view>
+  <text class='under_line'></text>
+  <textarea bindblur="bindTextAreaBlur" placeholder="自动变高" />
+  <view class='add'>
+    <view class='add_img'>
+      <view class='allReady'>
+        <image src='../../images/21.png' class='delete'></image>
+        <image src='../../images/10.jpg' class='allReady_img'></image>
+      </view>
+      <view class='upload'>
+        <image src='../../images/20.png'></image>
+      </view>
+    </view>
+    <view>还可以添加3张图片，剩余800字。</view>
+  </view>
+  <view class='contact'>
+    <text>联系方式</text>
+    <input placeholder='请输入手机或者邮箱号'></input>
+  </view>
+  <text class='tip'>* 请留下手机号/邮箱地址以便客服联系您（选填）</text>
+  <view class='submit'>提交</view>
+</view>
