@@ -20,6 +20,11 @@ Page({
         url:'../myBaby/baby/baby'
     })
   },
+  onOrder(){
+     wx.navigateTo({
+       url: '/pages/notice/notice'
+     })
+  },
   onSet(){
      wx.navigateTo({
        url: '/pages/set/set'

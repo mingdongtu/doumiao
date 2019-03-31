@@ -10,7 +10,7 @@
   </view>
   <view class='my_order'>
     <view class='map_phone'>
-      <view>
+      <view catchtap='onMap'>
         <image src='../../../images/18.png'></image>
         <text>地图</text>
       </view>

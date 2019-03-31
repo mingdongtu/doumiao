@@ -20,7 +20,7 @@
     <text class='icon_arrow'>  </text>
   </view>
   <!-- 我的预约 -->
-  <view class='my_avatar my_baby'>
+  <view class='my_avatar my_baby' catchtap='onOrder'>
     <view>
       <text class='icon_order icon_common'></text>
       <text>我的预约</text>
