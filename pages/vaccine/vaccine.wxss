@@ -1,9 +1,9 @@
 /* pages/vaccine/vaccine.wxss */
 
 .tab_box {
-  width: calc(100% - 80rpx);
-  margin-left: 40rpx;
-  margin-bottom: 60rpx;
+  width: calc(100% - 40rpx);
+  margin-left: 20rpx;
+  margin-bottom: 20rpx;
 }
 
 .tab_content {
@@ -23,10 +23,10 @@
 }
 
 .card image {
-  width: 120rpx;
-  height: 120rpx;
+  width: 100rpx;
+  height: 100rpx;
   display: inline-block;
-  margin-bottom: 10rpx;
+  /* margin-bottom: 10rpx; */
 }
 
 .under_line {

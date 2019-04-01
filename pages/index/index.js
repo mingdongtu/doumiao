@@ -20,6 +20,11 @@ Page({
         url:'../myBaby/baby/baby'
     })
   },
+  onHospital(){
+     wx.navigateTo({
+       url: '/pages/vaccine/order/order'
+     })
+  },
   onOrder(){
      wx.navigateTo({
        url: '/pages/notice/notice'

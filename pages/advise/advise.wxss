@@ -58,7 +58,7 @@ textarea {
   justify-content: center;
   align-items: center;
   background: #ccc;
-  margin-left: 20rpx;
+  /* margin-left: 20rpx; */
 }
 
 .upload image {
@@ -70,6 +70,7 @@ textarea {
   width: 100rpx;
   height: 100rpx;
   position: relative;
+  margin-right:20rpx;
 }
 
 .delete {

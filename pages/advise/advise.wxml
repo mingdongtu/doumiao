@@ -11,11 +11,11 @@
   <textarea bindblur="bindTextAreaBlur" placeholder="自动变高" />
   <view class='add'>
     <view class='add_img'>
-      <view class='allReady'>
+      <view class='allReady' wx:for='{{imgList}}'>
         <image src='../../images/21.png' class='delete'></image>
-        <image src='../../images/10.jpg' class='allReady_img'></image>
+        <image src="{{item}}" class='allReady_img'></image>
       </view>
-      <view class='upload'>
+      <view class='upload' catchtap='onUpload'>
         <image src='../../images/20.png'></image>
       </view>
     </view>

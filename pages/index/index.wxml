@@ -7,7 +7,7 @@
     </view>
     <view class='notification' catchtap='onNotice'>
       <text class='num'>2</text>
-      <image src='../../images/22.png' ></image>
+      <image src='../../images/22.png'></image>
     </view>
   </view>
   <!-- 我的宝宝 -->
@@ -33,6 +33,13 @@
     <view>
       <text class='icon_recommend icon_common'></text>
       <text>推荐给朋友</text>
+    </view>
+    <text class='icon_arrow'>  </text>
+  </view>
+    <view class='my_avatar recommend' catchtap='onHospital'>
+    <view>
+      <text class='icon_hospital icon_common'></text>
+      <text>社康列表</text>
     </view>
     <text class='icon_arrow'>  </text>
   </view>

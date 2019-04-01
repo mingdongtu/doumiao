@@ -1,10 +1,10 @@
 {
   "pages": [
-    
+    "pages/advise/advise",
+    "pages/vaccine/vaccine",
     "pages/index/index",
     "pages/myBaby/baby/baby",
     "pages/notice/notice",
-    "pages/vaccine/vaccine",
     "pages/vaccine/map/map",
     "pages/vaccine/order/order",
     "pages/vaccine/orderRegister/orderRegister",
@@ -12,10 +12,8 @@
     "pages/addBaby/addBaby",
     "pages/logs/logs",
     "pages/myBaby/myBaby",
-    "pages/advise/advise",
     "pages/orderDetail/orderDetail",
     "pages/set/set"
-  
   ],
   "window": {
     "backgroundTextStyle": "light",
