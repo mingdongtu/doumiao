@@ -35,7 +35,7 @@
 textarea {
   padding: 20rpx;
   background: #fff;
-  width: 100%;
+  width: calc(100% - 40rpx);
   height: 288rpx;
   display: block;
 }
@@ -48,6 +48,10 @@ textarea {
 
 .add_img {
   display: flex;
+  margin-bottom: 10rpx;
+}
+.warn,.warn_1{
+   color:red;
 }
 
 .upload {
@@ -95,6 +99,12 @@ textarea {
 }
 .contact>text{
   margin-right:20rpx;
+}
+.contact_warn{
+   color:red;
+   display:block;
+   margin-top:20rpx;
+   margin-left:20rpx;
 }
 .tip{
   display:block;

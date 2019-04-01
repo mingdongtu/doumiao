@@ -8,23 +8,24 @@
     </view>
   </view>
   <text class='under_line'></text>
-  <textarea bindblur="bindTextAreaBlur" placeholder="自动变高" />
+  <textarea bindblur="bindTextAreaBlur" placeholder="自动变高" bindinput='onImport' />
   <view class='add'>
     <view class='add_img'>
       <view class='allReady' wx:for='{{imgList}}'>
-        <image src='../../images/21.png' class='delete'></image>
+        <image src='../../images/21.png' class='delete' catchtap='onDelete' data-index='{{index}}'></image>
         <image src="{{item}}" class='allReady_img'></image>
       </view>
       <view class='upload' catchtap='onUpload'>
         <image src='../../images/20.png'></image>
       </view>
     </view>
-    <view>还可以添加3张图片，剩余800字。</view>
+    <view>还可以添加<text class='{{warn_1}}'>{{3-imgList.length}}</text>张图片，剩余<text class='{{warn}}'>{{140-textContent.length}}</text>字。</view>
   </view>
   <view class='contact'>
     <text>联系方式</text>
-    <input placeholder='请输入手机或者邮箱号'></input>
+    <input placeholder='请输入手机或者邮箱号' bindblur='onContact'></input>
   </view>
+  <text class='contact_warn' wx:if='{{!isRight}}'>* {{warnMsg}}</text>
   <text class='tip'>* 请留下手机号/邮箱地址以便客服联系您（选填）</text>
-  <view class='submit'>提交</view>
+  <view class='submit' catchtap='onSubmit'>提交</view>
 </view>

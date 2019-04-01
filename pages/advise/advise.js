@@ -5,14 +5,65 @@ Page({
    * 页面的初始数据
    */
   data: {
-    imgList: []
+    imgList: [],
+    imageNum: 0,
+    lastNum: 3,
+    textContent: '',
+    contact: '',
+    warn: '',
+    warn_1: '',
+    isRight: true,
+    warnMsg: '',
+    warnMsg_contact: ''
   },
   bindTextAreaBlur(e) {
 
   },
-  onUpload() {
-    const that = this ;
+  onImport(e) {
+    console.log(e)
+    let value = e.detail.value;
+    if (value.length > 139) {
+      this.setData({
+        warn: 'warn'
+      })
+    }
+    this.setData({
+      textContent: value
+    })
+  },
+  onContact(e) {
+    this.setData({
+      contact: e.detail.value
+    })
+  },
+  onDelete(e) {
+    this.setData({
+      warn_1: ''
+    })
+    const index = e.currentTarget.dataset.index;
     let imgList = this.data.imgList;
+    imgList.splice(index, 1);
+    this.setData({
+      imgList: imgList
+    })
+  },
+
+  onUpload() {
+    const that = this;
+    let imgList = this.data.imgList;
+    if (imgList.length > 2) {
+      wx.showModal({
+        title: '提示',
+        content: '最多只能上传三张照片',
+        showCancel: false,
+        success(res) {
+          if (res.confirm) {
+            console.log('用户点击确定')
+          }
+        }
+      })
+      return;
+    }
     wx.chooseImage({
       success(res) {
         const tempFilePaths = res.tempFilePaths
@@ -28,13 +79,54 @@ Page({
         //     // do something
         //   }
         // })
-        
+
         imgList.push(tempFilePaths[0])
- that.setData({
-      imgList:imgList
- })
+        if (imgList.length > 2) {
+          that.setData({
+            warn_1: 'warn_1'
+          })
+        }
+        that.setData({
+          imgList: imgList
+        })
+
       }
     })
+  },
+  onSubmit() {
+    // 校验：文本输入和联系方式
+    const textContent = this.data.textContent;
+    const contact = this.data.contact;
+    console.log(contact)
+    if (textContent.length == 0) {
+      this.setData({
+        warnMsg: '建议内容不能为空！',
+        isRight: false
+      })
+      return
+    }else{
+      this.setData({
+        warnMsg: '',
+        isRight: true
+      })
+    }
+    const reg_email = /^([a-zA-Z]|[0-9])(\w|\-)+@[a-zA-Z0-9]+\.([a-zA-Z]{2,4})$/;
+    const reg_phone = /^[1][3,4,5,7,8][0-9]{9}$/;
+    if (contact != '') {
+      // 不符合电话也不符合邮箱规则
+      if (!reg_email.test(contact) && !reg_phone.test(contact)) {
+        this.setData({
+          warnMsg: '请输入正确的手机号或邮箱',
+          isRight:false
+        })
+        return 
+      }else{
+        this.setData({
+          warnMsg: '',
+          isRight: true
+        })
+      }
+    }
   },
   /**
    * 生命周期函数--监听页面加载
