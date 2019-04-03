@@ -1,7 +1,7 @@
 {
   "pages": [
-    "pages/advise/advise",
     "pages/vaccine/vaccine",
+    "pages/advise/advise",
     "pages/index/index",
     "pages/myBaby/baby/baby",
     "pages/notice/notice",

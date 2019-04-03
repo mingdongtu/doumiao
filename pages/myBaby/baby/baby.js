@@ -1,47 +1,31 @@
 // pages/myBaby/baby/baby.js
+let app = getApp();
+let globalMethod = require('../../../method/method.js')
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    babyList: [
-      {
-        imgsrc: '../../../images/bao.png',
-        name: '罗饶启',
-        age: '2岁2个月28天',
-        isSpread: false,
-        edit: 'no_edit'
-      },
-      {
-        imgsrc: '../../../images/bao.png',
-        name: '罗饶启',
-        age: '2岁2个月28天',
-        isSpread: false,
-        edit: 'no_edit'
-      },
-      {
-        imgsrc: '../../../images/bao.png',
-        name: '罗饶启',
-        age: '2岁2个月28天',
-        isSpread: false,
-        edit: 'no_edit'
-      }
+    url: app.globalData.url,
+    babyList: []
 
-    ]
 
   },
-  onBabyMsg(){
-      wx.navigateTo({
-        url: '/pages/myBaby/myBaby',
-      })
+  
+  onBabyMsg(e) {
+    const id = e.currentTarget.dataset.id;
+
+    wx.navigateTo({
+      url: '/pages/myBaby/myBaby?id='+ id,
+    })
   },
   onEdit(e) {
     var index = e.currentTarget.dataset.index;
     var babyList = this.data.babyList
     console.log(babyList)
     for (var i = 0; i < babyList.length; i++) {
-      if(i==index){
+      if (i == index) {
         if (!babyList[i].isSpread) {
           babyList[i].edit = 'is_edit'
         } else {
@@ -59,7 +43,38 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    const that = this;
+    console.log(1222222)
+    wx.request({
+      url: this.data.url + '/dmi/weixinapi/getMyBaby.do',
+      data: {
+        userId: "befc5e09-4ce9-46f3-9bda-50350534ded2",
+        group: 'xcx'
+      },
+      success: function(res) {
+        const data = JSON.parse(res.data.value);
+        // 对返回的数据进行处理
+        let babyList = []
+        for (let i = 0; i < data.length; i++) {
+          let obj = {};
+          // debugger
+          obj.imgsrc = '../../../images/bao.png';
+          obj.isSpread = false;
+          obj.edit = 'no_edit';
+          obj.name = data[i].name;
+          obj.height = data[i].height;
+          obj.age = globalMethod.method.dealAge(data[i].birthDate);
+          obj.weight = data[i].weight;
+          obj.id = data[i].id;
+          babyList.push(obj)
+        }
+        that.setData({
+           babyList:babyList
+        })
 
+
+      }
+    })
   },
 
   /**

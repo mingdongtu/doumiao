@@ -4,9 +4,21 @@
        <image src = '../../images/11.png' catchtap='addBaby'></image>
        <text>添加宝宝</text>
    </view>
-   <view class='babay_msg' wx:for='{{babyList}}'>
-    <text>{{item.type}}</text>   
-    <text>{{item.value}}</text>
+   <view class='babay_msg'>
+    <text>年龄</text>   
+    <text>{{baby.age}}</text>
+  </view>
+  <view class='babay_msg'>
+    <text>身高</text>   
+    <text>{{baby.height}}cm</text>
+  </view>
+  <view class='babay_msg'>
+    <text>体重</text>   
+    <text>{{baby.weight}}kg</text>
+  </view>
+  <view class='babay_msg'>
+    <text>饮食</text>   
+    <text>{{baby.food}}</text>
   </view>
   <text class='under_line'></text>
   <view class='baby_content'>

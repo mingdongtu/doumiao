@@ -1,6 +1,6 @@
 <view class='main'>
-  <view class='box' wx:for='{{babyList}}' catchtap='onBabyMsg'>
-    <view class='baby {{item.edit}}' >
+  <view class='box' wx:for='{{babyList}}' catchtap='onBabyMsg' data-id = '{{item.id}}'>
+    <view class='baby {{item.edit}}'>
       <view class='left'>
         <view class='avatar'>
           <image src='{{item.imgsrc}}'></image>
@@ -9,7 +9,7 @@
           <text>{{item.name}}</text>
           <text>{{item.age}}</text> </view>
       </view>
-      <view class='edit' catchtap='onEdit' data-index ="{{index}}" >
+      <view class='edit' catchtap='onEdit' data-index="{{index}}">
         <image src='../../../images/edit.png'></image>
       </view>
     </view>
