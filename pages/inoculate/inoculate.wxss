@@ -1,0 +1,25 @@
+.arrow {
+  width: 30rpx;
+  height: 30rpx;
+  margin-right: 20rpx;
+}
+.main{
+  background:#eee;
+  font-size:30rpx;
+  height:100vh;
+  padding-top:2rpx;
+}
+.main>view{
+  background:#fff;
+  padding-left:20rpx;
+}
+.cmmon{
+  padding:20rpx 0;
+  display:flex;
+  justify-content:space-between;
+  align-items: center;
+  border-bottom:2rpx solid #eee;
+}
+.cmmon:nth-of-type(2){
+  border:none;
+}

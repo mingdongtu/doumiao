@@ -1,0 +1,12 @@
+<view class='main'>
+  <view>
+     <view class='cmmon' catchtap='onInculate'>
+       <text>接种查询</text>
+       <image src='../../images/17.png' class='arrow'></image>
+     </view>
+     <view class='cmmon' catchtap='onRecord'>
+       <text>接种记录</text>
+       <image src='../../images/17.png' class='arrow'></image>
+     </view>
+  </view>
+</view>

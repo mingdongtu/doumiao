@@ -1,0 +1,41 @@
+.main{
+  height:100vh;
+  background:#eee;
+  padding-top:20rpx;
+}
+.content image{
+   width:40rpx;
+   height:40rpx;
+}
+.content{
+  padding:0rpx 0rpx 20rpx 20rpx;
+  background:#fff;
+  margin-bottom:20rpx;
+}
+.title{
+  display:block;
+  padding:20rpx 0;
+  border-bottom:4rpx solid #eee;
+}
+.title text{
+   font-size:24rpx;
+}
+.main_content>view{
+    display:flex;
+    align-items: center;
+    padding-top:20rpx;
+}
+.main_content>view>text:nth-of-type(1){
+   margin:0rpx 20rpx;
+   font-weight:bold;
+}
+.main_content>view>text:nth-of-type(2){
+   font-size:30rpx;
+   color:#ccc;
+}
+.main_content>text{
+  font-size:30rpx;
+  font-weight:bold;
+  color:#ccc;
+  margin-left:60rpx;
+}
