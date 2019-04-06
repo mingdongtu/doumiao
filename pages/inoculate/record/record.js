@@ -1,4 +1,5 @@
 // pages/inoculate/record/record.js
+const app = getApp()
 Page({
 
   /**
@@ -87,7 +88,21 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-
+    // 获取接种记录
+    wx.request({
+      url: app.globalData.url +'/dmi/weixinapi/getBabyVaccinationRecord.do',
+      data:{
+        babyId:'3bf0c6f8-477b-4a49-80bd-ee4c341c5643',
+        pageNo:1,
+        pageSize:10,
+        group:'xcx'
+      },
+      success(res){
+         
+        let data = JSON.parse(res.data.value);
+        console.log(data.contents)
+      }
+    })
   },
 
   /**

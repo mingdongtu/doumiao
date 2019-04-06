@@ -5,20 +5,26 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    baby: ['金刚葫芦娃', '娜扎'],
+    customItem:'金刚葫芦娃',
+    index:0
   },
-
+  bindRegionChange(e){
+    this.setData({
+      index: e.detail.value
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onInculate(){
     wx.navigateTo({
-      url: '/pages/inoculate/search/search',
+      url: '/pages/inoculate/search/search'
     })
   },
   onRecord(){
     wx.navigateTo({
-      url: '/pages/inoculate/record/record',
+      url: '/pages/inoculate/record/record'
     })
   },
   onLoad: function (options) {

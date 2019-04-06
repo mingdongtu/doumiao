@@ -1,34 +1,81 @@
 <view class='select'>
-  <view class='city'>
+  <!-- <view class='city'>
     <image src='../../images/13.png'></image>
     <picker mode='region' value="{{region}}" custom-item="{{customItem}}" bindchange="bindRegionChange">
       <view class="picker">
         所属城市：{{region[0]}}，{{region[1]}}，{{region[2]}}
       </view>
     </picker>
-  </view>
+  </view> -->
   <view class='relation city'>
     <image src='../../images/14.png'></image>
     <picker mode='selector' bindchange="bindPickerChange" range='{{relations}}' value='{{idx}}'>
       <view class="picker">与宝宝关系 {{relations[idx]}}</view>
     </picker>
   </view>
+  <!-- 宝宝性别 -->
+   <view class='relation city'>
+    <image src='../../images/14.png'></image>
+    <picker mode='selector' bindchange="bindSexChange" range='{{sexs}}' value='{{nowIndex}}'>
+      <view class="picker">宝宝性别 {{sexs[nowIndex]}}</view>
+    </picker>
+  </view>
   <!-- 扫码 -->
   <view class='common scan'>
     <view>
       <image src='../../images/15.png'></image>
-      <input placeholder='请输入接种本上的儿童编码或条款' class="picker"></input>
+      <input placeholder='请输入接种本上的儿童编码或条款' class="picker" bindinput='onCode'> </input>
     </view>
     <image src='../../images/16.png'></image>
   </view>
   <!-- 验证码 -->
-  <view class='common veri_code'>
+  <!-- <view class='common veri_code'>
     <view>
       <image src='../../images/12.png'></image>
       <input placeholder='清输入验证码' class="picker"></input>
     </view>
     <text class='verification'>1518</text>
+  </view> -->
+   <view class='common veri_code'>
+    <view>
+      <image src='../../images/12.png'></image>
+      <input placeholder='清输入宝宝名字' class="picker" bindinput='onName'></input>
+    </view>
   </view>
-
-  <text class='confirm'>确认添加</text>
+  <view class='common veri_code'>
+    <view>
+      <image src='../../images/12.png'></image>
+      <input placeholder='清输入宝宝体重' class="picker" type='number' bindinput='onWeight'></input>
+    </view>
+    <text class=''>kg</text>
+  </view>
+  <view class='common veri_code'>
+    <view>
+      <image src='../../images/12.png'></image>
+      <input placeholder='清输入宝宝身高' class="picker" type='number' bindinput='onHeight'></input>
+    </view>
+    <text class=''>cm</text>
+  </view>
+  <view class='common veri_code'>
+    <view>
+      <image src='../../images/12.png'></image>
+      <input placeholder='清输入宝宝饮食' class="picker" bindinput='onEat'></input>
+    </view>
+  </view>
+  <!-- 宝宝出生日期 -->
+  <view class='all_picker common'>
+    <view>
+      <image src='../../images/12.png'></image>
+      <text>宝宝生日</text>
+    </view>
+    <view>
+      <picker class='picker' mode='date' value="{{clinicConfirmDate}}" start="2015-09-01" end="2017-09-01" bindchange="bindDateChange">
+        <view>{{clinicConfirmDate}}</view>
+      </picker>
+      <image src='../../images/17.png' class='arrow'></image>
+    </view>
+  </view>
+  <view class='warn' wx:if='{{isWarn}}'>请将信息正确且完整的填写</view>
+  <!-- 宝宝出生日期 -->
+  <text class='confirm' catchtap='onAdd'>确认添加</text>
 </view>

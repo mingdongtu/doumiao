@@ -1,3 +1,27 @@
+
+.baby{
+    height:200rpx;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+}
+.baby>view{
+     display:flex;
+     align-items: center;
+     margin-bottom:20rpx;
+}
+.baby image:nth-of-type(1) {
+    width:100rpx;
+    height:100rpx;
+    border-radius:50%;
+    margin-right:20rpx;
+
+}
+.baby image:nth-of-type(2){
+   width:40rpx;
+   height:40rpx;
+}
 .arrow {
   width: 30rpx;
   height: 30rpx;

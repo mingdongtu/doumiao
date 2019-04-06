@@ -72,3 +72,12 @@
   color: rgb(66, 63, 63);
   text-align:center;
 }
+.all_picker{
+  font-size:30rpx;
+}
+.warn{
+  color:red;
+  font-size:30rpx;
+  margin-top:20rpx;
+  margin-left: 20rpx;
+}

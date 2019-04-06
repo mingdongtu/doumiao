@@ -64,3 +64,26 @@
   color: rgb(66, 63, 63);
   text-align:center;
 }
+.confirm {
+  /* vertical-align:middle; */
+ /* display:flex; */
+ /* align-items: center; */
+ /* position:relative; */
+}
+.confirm image{
+   width:40rpx;
+   height:40rpx;
+   display:inline-block;
+   margin-bottom:-12rpx;
+   /* position:absolute; */
+   /* left:0rpx;
+   top:20rpx; */
+   margin-right:10rpx;
+}
+.confirm text{
+  line-height:48rpx;
+  text-indent:25px;
+}
+.warn{
+  color:red;
+}

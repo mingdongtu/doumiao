@@ -13,18 +13,18 @@
   </view>
   <view>
     <text>宝宝姓名</text>
-    <text>可爱的吉娃娃</text>
+    <text>{{detail.name}}</text>
   </view>
 </view>
 <text class='under_line'></text>
 <view class='code'>
   <view>
     <text>预约接种地点</text>
-    <text>宝安区中医院宝芝林</text>
+    <text>{{detail.address}}</text>
   </view>
   <view>
     <text>预约Ï时间</text>
-    <text>2019-01-04 09:00-09:30</text>
+    <text>{{detail.vaccineDate}}</text>
   </view>
 </view>
 <view class='tip'> 

@@ -1,6 +1,8 @@
 {
   "pages": [
+    "pages/addBaby/addBaby",
     "pages/vaccine/vaccine",
+    
     "pages/inoculate/record/record",
     "pages/inoculate/search/search",
     "pages/inoculate/inoculate",
@@ -10,9 +12,8 @@
     "pages/notice/notice",
     "pages/vaccine/map/map",
     "pages/vaccine/order/order",
-    "pages/vaccine/orderRegister/orderRegister",
     "pages/vaccine/vaccineSearch/vaccineSearch",
-    "pages/addBaby/addBaby",
+    "pages/vaccine/orderRegister/orderRegister",
     "pages/logs/logs",
     "pages/myBaby/myBaby",
     "pages/orderDetail/orderDetail",

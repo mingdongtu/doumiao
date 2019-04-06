@@ -1,5 +1,15 @@
 <view class='main'>
   <view>
+  <picker mode='selector' value="{{index}}" custom-item="{{customItem}}" range='{{baby}}' bindchange="bindRegionChange">
+       <view class='baby'>
+      <view>
+      <image src='../../images/10.jpg'></image>
+      <image src='../../images/17.png'></image>
+      </view>
+      <text>{{baby[index]}}</text>
+     </view>
+    </picker>
+    
      <view class='cmmon' catchtap='onInculate'>
        <text>接种查询</text>
        <image src='../../images/17.png' class='arrow'></image>

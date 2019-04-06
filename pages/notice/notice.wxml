@@ -1,7 +1,7 @@
 <view class='notice_list' wx:for='{{noticeList}}'>
-  <text>{{item.time}}</text>
-  <view catchtap='onDetail'>
+  <text>{{item.modifyDate}}</text>
+  <view catchtap='onDetail' data-id='{{item.id}}'>
     <text class='title'>通知</text>
-    <text class='content'>{{item.content}}</text>
+    <text class='content'>你的宝宝于{{item.modifyDate}}预约{{item.address}}接种疫苗点击查看详情</text>
   </view>
 </view>

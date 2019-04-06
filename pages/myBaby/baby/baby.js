@@ -12,7 +12,42 @@ Page({
 
 
   },
-  
+  onDelete(e){
+  // debugger
+     const index = e.currentTarget.dataset.index;
+     let babyList = this.data.babyList;
+     const id = babyList[index].id
+     const that = this
+    wx.showModal({
+      title: '提示',
+      content: '是否删除?',
+      success(res) {
+        if (res.confirm) {
+          wx.request({
+            url: app.globalData.url + '/dmi/baby/baby-remove.do?entity.id=' + id + '&group=' + 'xcx' ,
+           
+            success(res) {
+              // 更新宝宝列表数据
+              console.log(babyList)
+              babyList.splice(index, 1)
+               that.setData({
+                 babyList: babyList
+               })
+              console.log(babyList)
+              wx.showToast({
+                title: '成功',
+                icon: 'success',
+                duration: 1000
+              })
+            }
+          })
+        } else if (res.cancel) {
+          console.log('用户点击取消')
+        }
+      }
+    })
+   
+  },
   onBabyMsg(e) {
     const id = e.currentTarget.dataset.id;
 

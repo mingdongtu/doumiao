@@ -14,7 +14,7 @@
       </view>
     </view>
     <!-- 删除 -->
-    <view class='delete'>
+    <view class='delete' catchtap='onDelete' data-index='{{index}}'>
       <image src='../../../images/delete.png'></image>
       <text>删除</text>
     </view>
