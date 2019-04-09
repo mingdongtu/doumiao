@@ -39,3 +39,6 @@
   color:#ccc;
   margin-left:60rpx;
 }
+.scroll_content{
+  height:calc(100vh - 20rpx);
+}

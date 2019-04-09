@@ -2,9 +2,8 @@
   <view class='problem'>
     <text>反馈问题类型</text>
     <view class='normal'>
-      <text>功能异常</text>
-      <text>功能异常</text>
-      <text>其他</text>
+      <text wx:for='{{typeList}}' catchtap='onChoose' class='{{item.isChoose}}'  data-dex='{{index}}'>{{item.value}}</text>
+      
     </view>
   </view>
   <text class='under_line'></text>

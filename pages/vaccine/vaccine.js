@@ -9,7 +9,7 @@ Page({
       { src: '../../images/9.png', value: '接种证', path:'/pages/inoculate/inoculate'},
       { src: '../../images/8.png', value: '疫苗预约', path:'/pages/vaccine/orderRegister/orderRegister' },
       { src: '../../images/7.png', value: '疫苗快查', path:'/pages/vaccine/vaccineSearch/vaccineSearch' },
-      { src: '../../images/6.png', value: '宝宝信息', path:'/pages/myBaby/myBaby' }
+      { src: '../../images/6.png', value: '宝宝信息', path:'/pages/myBaby/baby/baby' }
     ],
     newsList:[
       { title_1: '宝宝的胃容量有限，宜少吃多餐', title_2: '多吃蔬菜水果', website: '育儿网', commentNum: '100', coverSrc:'../../images/10.jpg'},

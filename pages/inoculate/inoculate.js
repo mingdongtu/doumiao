@@ -1,11 +1,12 @@
 // pages/inoculate/inoculate‘.js
+let app = getApp();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    baby: ['金刚葫芦娃', '娜扎'],
+    baby: [],
     customItem:'金刚葫芦娃',
     index:0
   },
@@ -13,6 +14,8 @@ Page({
     this.setData({
       index: e.detail.value
     })
+    let babyList = app.globalData.babyList;
+    app.globalData.babyId = babyList[e.detail.value].id
   },
   /**
    * 生命周期函数--监听页面加载
@@ -28,7 +31,16 @@ Page({
     })
   },
   onLoad: function (options) {
-
+    //  获取全局的宝宝信息
+    let babyList = app.globalData.babyList;
+    let list = [];
+    for (let i =0;i<babyList.length;i++){
+         list.push(babyList[i].name)
+    }
+    this.setData({
+       baby:list
+    })
+    
   },
 
   /**

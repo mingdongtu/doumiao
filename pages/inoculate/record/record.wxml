@@ -1,15 +1,16 @@
 <view class='main'>
-
+<scroll-view scroll-y='true' bindscrolltolower='onBottom' class='scroll_content'>
   <view class='content' wx:for='{{list}}' wx:for-item='item1' catchtap='onDetail'>
     <text class='title'>{{item1.age}} <text>月龄</text></text>
     <view class='main_content' wx:for='{{item1.content}}' wx:for-item='item2'>
       <view>
         <image src='../../../images/y.png'></image>
-        <text>{{item2.viccine}}</text>
-        <text>（第剂{{item2.acount}}/共{{item2.totalCount}}剂）</text>
+        <text>{{item2.vaccine.name}}</text>
+        <text>（第剂1/共12剂）</text>
       </view>
-      <text>{{item2.acount}}</text>
+      <text>{{item2.vaccinationDate}}</text>
     </view>
     
   </view>
+  </scroll-view>
 </view>

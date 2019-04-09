@@ -1,0 +1,3 @@
+<view class='main'>
+<button open-type="getPhoneNumber" class='my_btn' bindgetphonenumber="getPhoneNumber">微信授权登录</button>
+</view>

@@ -6,103 +6,92 @@ Page({
    * 页面的初始数据
    */
   data: {
+    pageNo: 1,
+    pageCount: 1,
     list: [
-      {
-        age: '11',
-        content: [{
-            viccine: 'A群流脑疫苗',
-            count: 1,
-            totalCount: 1,
-            time: '2017-01-02'
-          },
-          {
-            viccine: '感冒',
-            count: 2,
-            totalCount: 3,
-            time: '2017-01-02',
-            time: '2017-01-02'
-          },
-          {
-            viccine: '埃博拉',
-            count: 2,
-            totalCount: 3,
-            time: '2017-01-02'
-          }
-        ]
-      },
-      {
-        age: '11',
-        content: [{
-          viccine: 'A群流脑疫苗',
-          count: 1,
-          totalCount: 1,
-          time: '2017-01-02'
-        },
-        {
-          viccine: '感冒',
-          count: 2,
-          totalCount: 3,
-          time: '2017-01-02',
-          time: '2017-01-02'
-        },
-        {
-          viccine: '埃博拉',
-          count: 2,
-          totalCount: 3,
-          time: '2017-01-02'
-        }
-        ]
-      },
-      {
-        age: '11',
-        content: [{
-          viccine: 'A群流脑疫苗',
-          count: 1,
-          totalCount: 1,
-          time: '2017-01-02'
-        },
-        {
-          viccine: '感冒',
-          count: 2,
-          totalCount: 3,
-          time: '2017-01-02',
-          time: '2017-01-02'
-        },
-        {
-          viccine: '埃博拉',
-          count: 2,
-          totalCount: 3,
-          time: '2017-01-02'
-        }
-        ]
-      }
 
     ]
   },
-  onDetail(){
-   wx.navigateTo({
-     url: '/pages/inoculate/cinne/cinne',
-   })
+  onBottom() { //滚动到底部触发
+    // return
+    console.log('我到底部了')
+    // debugger
+    let pageNo = this.data.pageNo;
+    if (pageNo < this.data.pageCount) { //
+      pageNo = pageNo + 1;
+      this.setData({
+        pageNo: pageNo
+      })
+      // 调用请求
+      this.getData(pageNo)
+    } else {
+      wx.showToast({
+        title: '没有更多内容了',
+        icon: 'loading',
+        duration: 1000
+      })
+    }
+  },
+  onDetail() {
+    wx.navigateTo({
+      url: '/pages/inoculate/cinne/cinne',
+    })
+  },
+  getData(pageNo) {
+    const that = this
+    let mylist = this.data.list
+    wx.showLoading({
+      title: '加载中',
+      mask: true
+    })
+    wx.request({
+      url: app.globalData.url + '/dmi/weixinapi/getBabyVaccinationRecord.do',
+      data: {
+        // babyId: app.globalData.babyId,
+        babyId: '3bf0c6f8-477b-4a49-80bd-ee4c341c5643',
+        pageNo: pageNo,
+        pageSize: 10,
+        group: 'xcx'
+      },
+      success(res) {
+        let data = JSON.parse(res.data.value);
+        console.log('接种记录数据',data)
+        that.setData({
+          pageCount: data.pageCount
+        })
+     
+       
+        for (let i = 0; i < data.contents.length; i++) {
+          let obj = {}
+          obj.age = data.contents[i].group;
+          for (let j = 0; j < data.contents[i].list.length;j++){
+            data.contents[i].list[j].vaccinationDate = data.contents[i].list[j].vaccinationDate.slice(0,10)
+          }
+          obj.content = data.contents[i].list
+          // debugger
+          // let obj_1 = {}
+          // obj_1.viccine = data.contents[i].vaccine.name;
+          // obj_1.count = 1;
+          // obj_1.totalCount = 20;
+
+          // obj.content.push(obj_1)
+          mylist.push(obj)
+        }
+        that.setData({
+          list: mylist
+        })
+        wx.hideLoading()
+
+      }
+    })
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
     // 获取接种记录
-    wx.request({
-      url: app.globalData.url +'/dmi/weixinapi/getBabyVaccinationRecord.do',
-      data:{
-        babyId:'3bf0c6f8-477b-4a49-80bd-ee4c341c5643',
-        pageNo:1,
-        pageSize:10,
-        group:'xcx'
-      },
-      success(res){
-         
-        let data = JSON.parse(res.data.value);
-        console.log(data.contents)
-      }
-    })
+
+    this.getData(this.data.pageNo)
   },
 
   /**

@@ -24,9 +24,9 @@
   <view class='common scan'>
     <view>
       <image src='../../images/15.png'></image>
-      <input placeholder='请输入接种本上的儿童编码或条款' class="picker" bindinput='onCode'> </input>
+      <input placeholder='请输入接种本上的儿童编码或条款' class="picker" bindinput='onCode' value='{{code}}'> </input>
     </view>
-    <image src='../../images/16.png'></image>
+    <image src='../../images/16.png' catchtap='onScan'></image>
   </view>
   <!-- 验证码 -->
   <!-- <view class='common veri_code'>

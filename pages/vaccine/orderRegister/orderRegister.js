@@ -131,8 +131,27 @@ Page({
       wx.request({
         url: app.globalData.url + '/dmi/vaccinevaccinationorder/vaccineVaccinationOrder-save.do',
         data:data,
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'text/plain'
+        },
+        method: 'POST',
+
         success(res){
-            
+             console.log(res)
+             if(res.data.code == 1){ //成功
+               wx.showToast({
+                 title: '预约成功',
+                 icon: 'success',
+                 duration: 1000
+               })
+             }else{
+               wx.showToast({
+                 title: '预约失败',
+                 icon: 'success',
+                 duration: 1000
+               })
+             }
         }
       })
     }

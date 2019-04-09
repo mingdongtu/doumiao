@@ -3,6 +3,9 @@
   background: #eee;
   /* height:120rpx; */
   padding:20rpx;
+  position:fixed;
+  top:0;
+  width:calc(100% - 40rpx);
 }
 .search >view{
    background:#fff;
@@ -19,6 +22,7 @@
 }
 .search input {
   margin-left:20rpx;
+  height:30rpx;
 }
 .search >view image{
    width:40rpx;
@@ -62,12 +66,16 @@
     height:100rpx;
 }
 .main image{
-  width:60rpx;
-  height:60rpx;
+  width:40rpx;
+  height:40rpx;
 }
 .under_line{
   display:block;
   width:100%;
   height:6rpx;
   background: #eee;
+}
+.scroll_content{
+  height:calc(100vh - 120rpx);
+  margin-top:120rpx;
 }

@@ -1,0 +1,10 @@
+
+/* pages/login/login.wxss */
+
+.my_btn{
+  background:rgb(94, 170, 92);
+  
+}
+.main{
+  padding-top:200rpx;
+}

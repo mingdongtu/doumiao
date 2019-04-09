@@ -19,7 +19,7 @@
         <text>致电</text>
       </view>
     </view>
-    <view class='order_btn'>预约登记</view>
+    <view class='order_btn' catchtap='onRegister'>预约登记</view>
   </view>
   <!-- <text class='under_line'></text> -->
 </view>

@@ -24,6 +24,11 @@ Page({
       phoneNumber: '13798436224' // 仅为示例，并非真实的电话号码
     })
   },
+  onRegister(){
+    wx.navigateTo({
+      url: '/pages/vaccine/orderRegister/orderRegister',
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */

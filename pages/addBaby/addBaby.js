@@ -9,68 +9,86 @@ Page({
     region: ['广东省', '广州市', '海珠区'],
     customItem: '全部',
     relations: ['父女', '母女', '爷爷', '奶奶', '阿姨', '叔叔', '外公', '外婆'],
-    sexs:['男','女'],
-    realation:'父女',
-    sex:'男',
+    sexs: ['男', '女'],
+    realation: '父女',
+    sex: '男',
     idx: 0,
-    nowIndex:0,
-    code:'',
+    nowIndex: 0,
+    code: '',
     clinicConfirmDate: '2016-09-01',
     height: '',
     weight: '',
     eat: '',
-    name:'',
-    isWarn:false
+    name: '',
+    isWarn: false
   },
-  onAdd(){
-      let data = {
-        name:this.data.name,
-        birthDate:this.data.clinicConfirmDate,
-        sex:this.data.sex,
-        weight:this.data.weight,
-        height:this.data.height,
-        group:'xcx',
-        user:{
-          id:'befc5e09-4ce9-46f3-9bda-50350534ded2'
-        },
-        // code:this.data.code //儿童编码 
-        // realation:this.data.relation,//与宝宝关系
-        diet:this.data.eat //饮食
-
+  onScan() {
+    const that = this;
+    wx.scanCode({
+      success(res) {
+        console.log(res)
+       that.setData({
+           code:res.result
+       })
       }
+    })
+  },
+  onAdd() {
+    let data = {
+      name: this.data.name,
+      birthDate: this.data.clinicConfirmDate,
+      sex: this.data.sex,
+      weight: this.data.weight,
+      height: this.data.height,
+      group: 'xcx',
+      user: {
+        id: 'befc5e09-4ce9-46f3-9bda-50350534ded2'
+      },
+      // code:this.data.code //儿童编码 
+      // realation:this.data.relation,//与宝宝关系
+      diet: this.data.eat //饮食
 
-      // 提前进行验证
-    if (this.data.name == '' || this.data.weight == '' || this.data.height == '' || this.data.eat == '' ){
-        this.setData({
-            isWarn:true
-        })
-        return
-    }else{
+    }
+
+    // 提前进行验证
+    if (this.data.name == '' || this.data.weight == '' || this.data.height == '' || this.data.eat == '') {
+      this.setData({
+        isWarn: true
+      })
+      return
+    } else {
       this.setData({
         isWarn: false
       })
     }
-      wx.request({
-        url: app.globalData.url + '/dmi/baby/baby-save.do',
-        data:data,
-        success(res){
-          wx.showToast({
-            title: '成功',
-            icon: 'success',
-            duration: 1000
-          })
-        }
-      })
+    wx.request({
+      url: app.globalData.url + '/dmi/baby/baby-save.do',
+      data: data,
+      header: {
+        // 'content-type': 'application/x-www-form-urlencoded', // 默认值
+        'Accept': 'application/json',
+        'Content-Type': 'text/plain'
+
+      },
+      method: 'POST',
+      success(res) {
+        wx.showToast({
+          title: '成功',
+          icon: 'success',
+          duration: 1000
+        })
+      }
+    })
   },
   /**
    * 生命周期函数--监听页面加载
    */
-  onName(e){
+  onName(e) {
     this.setData({
       name: e.detail.value
     })
   },
-  onCode(e){
+  onCode(e) {
     this.setData({
       code: e.detail.value
     })
@@ -108,9 +126,9 @@ Page({
       idx: e.detail.value,
       realation: this.data.relations[e.detail.value]
     })
-   
+
   },
-  bindSexChange(e){
+  bindSexChange(e) {
     this.setData({
       nowIndex: e.detail.value,
       sex: this.data.relations[e.detail.value]

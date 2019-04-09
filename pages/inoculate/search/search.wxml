@@ -8,20 +8,22 @@
   </view>
 </view>
 
-<view class='content'  wx:for='{{list}}' catchtap='onSearch'>
-  <view class='title'>
-    <text>{{item.age}}</text>
-    <text>计划时间：{{item.time}}</text>
-  </view>
-  <view class='main'>
-    <view>
-      <text>{{item.sick}}</text>
-      <view>
-        <text>{{item.vaccine}}</text>
-        <text>第{{item.acount}}剂/共{{item.totalAcount}}剂</text>
-      </view>
+<scroll-view scroll-y='true' bindscrolltolower='onBottom' class='scroll_content'>
+  <view class='content' wx:for='{{list}}' catchtap='onSearch'>
+    <view class='title'>
+      <text>{{item.age}}月龄</text>
+      <text>计划时间：{{item.time}}</text>
     </view>
-    <image src='../../../images/17.png'></image>
+    <view class='main'>
+      <view>
+        <text>{{item.sick}}</text>
+        <view>
+          <text>{{item.vaccine}}</text>
+          <text>第{{item.acount}}剂/共{{item.totalAcount}}剂</text>
+        </view>
+      </view>
+      <image src='../../../images/17.png'></image>
+    </view>
+    <text class='under_line'></text>
   </view>
-  <text class='under_line'></text>
-</view>
+</scroll-view>

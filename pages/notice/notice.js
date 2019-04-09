@@ -57,11 +57,22 @@ Page({
       contact: "联系人",
       contactMobile: "16489"
     }
+    wx.showLoading({
+      title: '加载中',
+      mask: true
+    })
     wx.request({
       url: app.globalData.url + '/dmi/vaccinevaccinationorder/vaccineVaccinationOrder-page.do',
       data: data,
       success(res) {
+        wx.hideLoading()
 
+        if (res.data.code==0){
+            wx.showToast({
+              title: '获取数据失败',
+            })
+            return
+        }
         let data = JSON.parse(res.data.value).contents
         console.log(data)
         // debugger
@@ -80,6 +91,7 @@ Page({
         that.setData({
           noticeList: noticeList
         })
+      
         console.log(that.data.noticeList)
         // debugger
       }

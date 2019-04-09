@@ -40,6 +40,18 @@ let method = {
 
     return year + '岁' + month + '个月' + day + '天';
 
+  },
+   showLoading: function (msg) {
+    wx.showLoading({
+      title: msg,
+      mask: true
+    })
+  },
+  // 隐藏动画
+  hideLoading: function (t) {
+    setTimeout(function () {
+      wx.hideLoading()
+    }, t)
   }
 }
 module.exports = {

@@ -1,4 +1,5 @@
 // pages/advise/advise.js
+const app = getApp()
 Page({
 
   /**
@@ -14,10 +15,55 @@ Page({
     warn_1: '',
     isRight: true,
     warnMsg: '',
-    warnMsg_contact: ''
+    warnMsg_contact: '',
+    typeList: [{
+      value: '功能异常',
+      isChoose: ''
+    }, {
+      value: '界面异常',
+      isChoose: ''
+    }, {
+      value: '其他',
+      isChoose: ''
+    }],
+    type:'',
+    tempFilePath: [] //图片路径
   },
   bindTextAreaBlur(e) {
 
+  },
+  onChoose(e) {
+    const dex = e.currentTarget.dataset.dex;
+    let typeList = this.data.typeList;
+    for (let i = 0; i < typeList.length; i++) {
+      if (dex == i) {
+        typeList[i].isChoose = 'choose'
+        this.setData({
+          type: typeList[i].value
+        })
+      } else {
+        typeList[i].isChoose = ''
+      }
+    }
+    this.setData({
+      typeList:typeList
+    })
+  },
+  toUpload(path) {
+    wx.uploadFile({ //上传图片到指定服务器
+      url: app.globalData.url + '/dmi/imageUpload.do', // 仅为示例，非真实的接口地址
+      filePath: path,
+      name: 'files',
+      header: {
+        'Content-Type': 'multipart/form-data'
+      },
+      formData: {
+        user: 'test'
+      },
+      success(res) {
+        const data = res.data
+      }
+    })
   },
   onImport(e) {
     console.log(e)
@@ -66,20 +112,10 @@ Page({
     }
     wx.chooseImage({
       success(res) {
+        console.log('文件名', res)
         const tempFilePaths = res.tempFilePaths
-        // wx.uploadFile({ //上传图片到指定服务器
-        //   url: 'https://example.weixin.qq.com/upload', // 仅为示例，非真实的接口地址
-        //   filePath: tempFilePaths[0],
-        //   name: 'file',
-        //   formData: {
-        //     user: 'test'
-        //   },
-        //   success(res) {
-        //     const data = res.data
-        //     // do something
-        //   }
-        // })
 
+        that.toUpload(tempFilePaths[0])
         imgList.push(tempFilePaths[0])
         if (imgList.length > 2) {
           that.setData({
@@ -104,7 +140,7 @@ Page({
         isRight: false
       })
       return
-    }else{
+    } else {
       this.setData({
         warnMsg: '',
         isRight: true
@@ -117,14 +153,15 @@ Page({
       if (!reg_email.test(contact) && !reg_phone.test(contact)) {
         this.setData({
           warnMsg: '请输入正确的手机号或邮箱',
-          isRight:false
+          isRight: false
         })
-        return 
-      }else{
+        return
+      } else {
         this.setData({
           warnMsg: '',
           isRight: true
         })
+
       }
     }
   },

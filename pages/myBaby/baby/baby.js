@@ -12,27 +12,27 @@ Page({
 
 
   },
-  onDelete(e){
-  // debugger
-     const index = e.currentTarget.dataset.index;
-     let babyList = this.data.babyList;
-     const id = babyList[index].id
-     const that = this
+  onDelete(e) {
+    // debugger
+    const index = e.currentTarget.dataset.index;
+    let babyList = this.data.babyList;
+    const id = babyList[index].id
+    const that = this
     wx.showModal({
       title: '提示',
       content: '是否删除?',
       success(res) {
         if (res.confirm) {
           wx.request({
-            url: app.globalData.url + '/dmi/baby/baby-remove.do?entity.id=' + id + '&group=' + 'xcx' ,
-           
+            url: app.globalData.url + '/dmi/baby/baby-remove.do?entity.id=' + id + '&group=' + 'xcx',
+
             success(res) {
               // 更新宝宝列表数据
               console.log(babyList)
               babyList.splice(index, 1)
-               that.setData({
-                 babyList: babyList
-               })
+              that.setData({
+                babyList: babyList
+              })
               console.log(babyList)
               wx.showToast({
                 title: '成功',
@@ -46,13 +46,13 @@ Page({
         }
       }
     })
-   
+
   },
   onBabyMsg(e) {
     const id = e.currentTarget.dataset.id;
 
     wx.navigateTo({
-      url: '/pages/myBaby/myBaby?id='+ id,
+      url: '/pages/myBaby/myBaby?id=' + id,
     })
   },
   onEdit(e) {
@@ -78,6 +78,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    wx.showLoading({
+      title: '加载中',
+      mask: true
+    })
     const that = this;
     console.log(1222222)
     wx.request({
@@ -87,6 +91,13 @@ Page({
         group: 'xcx'
       },
       success: function(res) {
+        wx.hideLoading()
+        if (res.data.code == 0) {
+          wx.showToast({
+            title: '获取数据失败',
+          })
+          return
+        }
         const data = JSON.parse(res.data.value);
         // 对返回的数据进行处理
         let babyList = []
@@ -104,8 +115,9 @@ Page({
           babyList.push(obj)
         }
         that.setData({
-           babyList:babyList
+          babyList: babyList
         })
+
 
 
       }
