@@ -12,6 +12,11 @@ Page({
 
 
   },
+  addBaby() {
+    wx.navigateTo({
+      url: '/pages/addBaby/addBaby',
+    })
+  },
   onDelete(e) {
     // debugger
     const index = e.currentTarget.dataset.index;
@@ -55,6 +60,59 @@ Page({
       url: '/pages/myBaby/myBaby?id=' + id,
     })
   },
+  getBabyData() {
+    const that = this;
+    wx.request({
+      url: this.data.url + '/dmi/weixinapi/getMyBaby.do',
+      data: {
+        // userid: "befc5e09-4ce9-46f3-9bda-50350534ded2",
+        userid: app.globalData.userId,
+        group: 'xcx'
+      },
+      // method:'POST',
+      success: function(res) {
+        wx.hideLoading()
+        if (res.data.code == 0) {
+          wx.showToast({
+            title: '获取数据失败',
+          })
+          return
+        }
+        if (res.data.code == 2) {
+          globalMethod.method.noLogin(app)
+        }
+        const data = JSON.parse(res.data.value);
+        if (data.length == 1 && JSON.stringify(data[0]) == '{}') {
+          that.setData({
+            babyList: []
+          })
+          return
+        }
+        // 对返回的数据进行处理
+        let babyList = []
+        for (let i = 0; i < data.length; i++) {
+          let obj = {};
+          // debugger
+          obj.imgsrc = '../../../images/bao.png';
+          obj.isSpread = false;
+          obj.edit = 'no_edit';
+          obj.name = data[i].name;
+          obj.height = data[i].height;
+          obj.age = globalMethod.method.dealAge(data[i].birthDate);
+          obj.weight = data[i].weight;
+          obj.id = data[i].id;
+          babyList.push(obj)
+        }
+        // debugger
+        that.setData({
+          babyList: babyList
+        })
+
+
+
+      }
+    })
+  },
   onEdit(e) {
     var index = e.currentTarget.dataset.index;
     var babyList = this.data.babyList
@@ -82,46 +140,8 @@ Page({
       title: '加载中',
       mask: true
     })
-    const that = this;
-    console.log(1222222)
-    wx.request({
-      url: this.data.url + '/dmi/weixinapi/getMyBaby.do',
-      data: {
-        userId: "befc5e09-4ce9-46f3-9bda-50350534ded2",
-        group: 'xcx'
-      },
-      success: function(res) {
-        wx.hideLoading()
-        if (res.data.code == 0) {
-          wx.showToast({
-            title: '获取数据失败',
-          })
-          return
-        }
-        const data = JSON.parse(res.data.value);
-        // 对返回的数据进行处理
-        let babyList = []
-        for (let i = 0; i < data.length; i++) {
-          let obj = {};
-          // debugger
-          obj.imgsrc = '../../../images/bao.png';
-          obj.isSpread = false;
-          obj.edit = 'no_edit';
-          obj.name = data[i].name;
-          obj.height = data[i].height;
-          obj.age = globalMethod.method.dealAge(data[i].birthDate);
-          obj.weight = data[i].weight;
-          obj.id = data[i].id;
-          babyList.push(obj)
-        }
-        that.setData({
-          babyList: babyList
-        })
 
-
-
-      }
-    })
+    this.getBabyData()
   },
 
   /**
@@ -135,7 +155,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-
+    this.getBabyData()
   },
 
   /**

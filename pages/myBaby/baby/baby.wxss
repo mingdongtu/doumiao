@@ -94,3 +94,21 @@
   border: 2rpx solid #eee;
   margin-right: 20rpx;
 }
+
+.addBaby{
+   display:flex;
+   justify-content: center;
+   align-items:center;
+   /* font-size: */
+   color:#fff;
+   position: absolute;
+   top:200px;
+   width:100%;
+   height:60px;
+ background:#19c471;}
+ .addBaby>image{
+     width:20px;
+     height:20px;
+     margin-right:10px;
+
+ }

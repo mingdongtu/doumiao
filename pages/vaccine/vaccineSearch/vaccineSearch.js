@@ -1,4 +1,5 @@
 // pages/vaccine/vaccineSearch/vaccineSearch.js
+const globalMethod = require('../../../method/method.js')
 const app = getApp()
 Page({
 
@@ -39,14 +40,15 @@ Page({
         name:this.data.name,
         batchNo:this.data.order,
         company:this.data.company
+        // name: 'baby2',
+        // batchNo: '2019',
+        // company: 'hongfu951'
       }
-      wx.request({
-        url: app.globalData.url + '/dmi/vaccine/vaccine-page.do',
-        data:data,
-        success(res){
-           console.log('搜索结果',res)
-        }
+      // 将参数传递到下一个页面
+      wx.navigateTo({
+        url: '/pages/quickSearch/quickSearch?obj=' + data,
       })
+      
   },
   /**
    * 生命周期函数--监听页面加载

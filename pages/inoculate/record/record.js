@@ -1,5 +1,5 @@
-// pages/inoculate/record/record.js
-const app = getApp()
+let globalMethod = require('../../../method/method.js') ;
+const app = getApp();
 Page({
 
   /**
@@ -47,40 +47,53 @@ Page({
     wx.request({
       url: app.globalData.url + '/dmi/weixinapi/getBabyVaccinationRecord.do',
       data: {
-        // babyId: app.globalData.babyId,
-        babyId: '3bf0c6f8-477b-4a49-80bd-ee4c341c5643',
+        babyId: app.globalData.babyId,
+        // babyId: '3bf0c6f8-477b-4a49-80bd-ee4c341c5643',
         pageNo: pageNo,
         pageSize: 10,
         group: 'xcx'
       },
+      method:'POST',
       success(res) {
-        let data = JSON.parse(res.data.value);
-        console.log('接种记录数据',data)
-        that.setData({
-          pageCount: data.pageCount
-        })
-     
-       
-        for (let i = 0; i < data.contents.length; i++) {
-          let obj = {}
-          obj.age = data.contents[i].group;
-          for (let j = 0; j < data.contents[i].list.length;j++){
-            data.contents[i].list[j].vaccinationDate = data.contents[i].list[j].vaccinationDate.slice(0,10)
-          }
-          obj.content = data.contents[i].list
-          // debugger
-          // let obj_1 = {}
-          // obj_1.viccine = data.contents[i].vaccine.name;
-          // obj_1.count = 1;
-          // obj_1.totalCount = 20;
-
-          // obj.content.push(obj_1)
-          mylist.push(obj)
-        }
-        that.setData({
-          list: mylist
-        })
         wx.hideLoading()
+        // debugger
+        if (res.data.code == 1) {
+          if (res.data.value == 'null' ){
+             wx.showToast({
+               title: '没有数据',
+             })
+             return
+          }
+          let data = JSON.parse(res.data.value);
+          console.log('接种记录数据', data)
+          that.setData({
+            pageCount: data.pageCount
+          })
+          for (let i = 0; i < data.contents.length; i++) {
+            let obj = {}
+            let age = globalMethod.method.dealAge(data.contents[i].group,1)
+
+            if(age[0]>0){
+                age = age[0]*12 + age[1]
+            }else{
+              age = age[1]==0?1:age[1]
+            }
+          
+            obj.age = age;
+            for (let j = 0; j < data.contents[i].list.length; j++) {
+              data.contents[i].list[j].vaccinationDate = data.contents[i].list[j].vaccinationDate.slice(0, 10)
+            }
+            obj.content = data.contents[i].list
+            mylist.push(obj)
+          }
+          that.setData({
+            list: mylist
+          })
+        }
+        if (res.data.code == 2) {
+          globalMethod.method.noLogin(app)
+        }
+       
 
       }
     })

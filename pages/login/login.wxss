@@ -2,9 +2,45 @@
 /* pages/login/login.wxss */
 
 .my_btn{
-  background:rgb(94, 170, 92);
+  /* background:rgb(94, 170, 92); */
   
 }
 .main{
-  padding-top:200rpx;
+  /* padding-top:200rpx; */
+}
+
+.wechat_right{
+ width:690rpx;
+  height:88rpx;
+  margin-left:30rpx;
+  font-size:32rpx;
+  background:#19c471;
+  color:#fff;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  border-radius:8rpx;
+  position:relative;
+  margin-top:200rpx;
+
+}
+.isRight{
+  display:none;
+}
+.login_permit{
+  position:absolute;
+   width:690rpx;
+  height:88rpx;
+   left:0rpx; 
+   border-radius:8rpx;
+  opacity:0;
+}
+.wechat_icon{
+      width:45rpx;
+    height:36rpx;
+    margin-right:17rpx;
+}
+.msg{
+  color:#fff;
+  font-size:32rpx;
 }

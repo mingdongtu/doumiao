@@ -1,4 +1,5 @@
 // pages/set/set.js
+const app = getApp()
 Page({
 
   /**
@@ -12,11 +13,37 @@ Page({
       url: '/pages/advise/advise',
     })
   },
+  onLogout(){
+      wx.request({
+        url: app.globalData.url + '/dmi/weixinapi/login-out.do',
+        data:{
+          group:'xcx',
+          // userId:'26d544fb-b0ad-4c63-b2de-93c66ffab161'
+          userId:app.globalData.userId
+        },
+        success(res){
+            console.log(res)
+            if(res.data.code==1){
+              app.globalData.status = 0
+              // 清除缓存
+              wx.removeStorageSync('userid')
+                wx.showToast({
+                  title: '退出成功！'
+                })
+                setTimeout(function(){
+                  wx.navigateBack({
+                    delta: 1
+                  })     
+                },1000)
+            }
+        }
+      })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+      
   },
 
   /**

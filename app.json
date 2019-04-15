@@ -1,5 +1,6 @@
 {
   "pages": [
+ 
     "pages/vaccine/vaccine",
     "pages/inoculate/search/search",
     "pages/vaccine/vaccineSearch/vaccineSearch",
@@ -20,7 +21,10 @@
     "pages/myBaby/record/record",
     "pages/inoculate/cinne/cinne",
     "pages/inoculate/earch/earch",
-    "pages/login/login"
+    "pages/login/login",
+    "pages/quickSearch/quickSearch"
+     
+    
   ],
   "window": {
     "backgroundTextStyle": "light",

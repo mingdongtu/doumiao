@@ -2,13 +2,16 @@
   <view class='my_avatar'>
     <view>
       <image src='{{userInfo.avatarUrl}}' class='userinfo-avatar'></image>
-      <text class='my_name' wx:if='{{!isLogin}}'>{{userInfo.nickName}}</text>
-      <text class='icon_arrow' catchtap='onLogin'  wx:if='{{!isLogin}}'>  </text>
+      
+      <view catchtap='onLogin' wx:if='{{!isLogin}}'>
+        <text class='my_name'>{{userInfo.nickName}}</text>
+        <text class='icon_arrow'>  </text>
+      </view>
       <text class='my_name' wx:if='{{isLogin}}'>{{userInfo.nickName}}</text>
     </view>
     <view class='notification' catchtap='onNotice'>
       <text class='num'>2</text>
-      <image src='../../images/22.png' ></image>
+      <image src='../../images/22.png'></image>
     </view>
   </view>
   <!-- 我的宝宝 -->
@@ -18,7 +21,7 @@
       <text class='icon_baby icon_common'></text>
       <text>我的宝宝</text>
     </view>
-    <text class='icon_arrow' >  </text>
+    <text class='icon_arrow'>  </text>
   </view>
   <!-- 我的预约 -->
   <view class='my_avatar my_baby' catchtap='onOrder'>
@@ -37,7 +40,7 @@
     </view>
     <text class='icon_arrow'>  </text>
   </view> -->
-    <view class='my_avatar recommend' catchtap='onHospital'>
+  <view class='my_avatar recommend' catchtap='onHospital'>
     <view>
       <text class='icon_hospital icon_common'></text>
       <text>社康列表</text>

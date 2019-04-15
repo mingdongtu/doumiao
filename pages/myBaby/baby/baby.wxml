@@ -1,5 +1,5 @@
 <view class='main'>
-  <view class='box' wx:for='{{babyList}}' catchtap='onBabyMsg' data-id = '{{item.id}}'>
+  <view class='box' wx:for='{{babyList}}' catchtap='onBabyMsg' data-id='{{item.id}}'>
     <view class='baby {{item.edit}}'>
       <view class='left'>
         <view class='avatar'>
@@ -18,5 +18,11 @@
       <image src='../../../images/delete.png'></image>
       <text>删除</text>
     </view>
+  </view>
+
+  <!-- 去添加宝宝 -->
+  <view class='addBaby' catchtap='addBaby'>
+     <image src='../../../images/20.png'></image>
+     <text>去添加宝宝</text>
   </view>
 </view>

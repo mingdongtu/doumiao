@@ -37,12 +37,12 @@ Page({
     let data = {
       name: this.data.name,
       birthDate: this.data.clinicConfirmDate,
-      sex: this.data.sex,
+      sex: this.data.sex=='男'?1:2,
       weight: this.data.weight,
       height: this.data.height,
       group: 'xcx',
       user: {
-        id: 'befc5e09-4ce9-46f3-9bda-50350534ded2'
+        id: app.globalData.userId
       },
       // code:this.data.code //儿童编码 
       // realation:this.data.relation,//与宝宝关系
@@ -63,20 +63,40 @@ Page({
     }
     wx.request({
       url: app.globalData.url + '/dmi/baby/baby-save.do',
-      data: data,
-      header: {
-        // 'content-type': 'application/x-www-form-urlencoded', // 默认值
-        'Accept': 'application/json',
-        'Content-Type': 'text/plain'
-
+      data: {
+          'data':JSON.stringify(data)
       },
-      method: 'POST',
+      // header: {
+      //   // 'content-type': 'application/x-www-form-urlencoded', // 默认值
+      //   'Accept': 'application/json',
+      //   'Content-Type': 'text/plain'
+
+      // },
+      // method: 'POST',
       success(res) {
+        if(res.data.code == 0){
+          wx.showModal({
+            title: '提示',
+            content: res.data.msg,
+            showCancel:true,
+            success(res) {
+              if (res.confirm) {
+                
+              }
+            }
+          })
+       
+          return
+        }
         wx.showToast({
-          title: '成功',
-          icon: 'success',
-          duration: 1000
+          title: '添加成功',
         })
+        setTimeout(function(){
+               wx.navigateBack({
+                    delta:1
+               })
+        },1000)
+        
       }
     })
   },

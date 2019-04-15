@@ -9,5 +9,5 @@
        <image src='../../images/17.png' class='arrow'></image>
      </view>
   </view>
-  <text class='logout'>退出登录</text>
+  <text class='logout' catchtap='onLogout'>退出登录</text>
 </view>

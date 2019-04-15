@@ -26,8 +26,9 @@ Page({
       value: '其他',
       isChoose: ''
     }],
-    type:'',
-    tempFilePath: [] //图片路径
+    type: '',
+    tempFilePath: [], //图片路径,
+    image: ''
   },
   bindTextAreaBlur(e) {
 
@@ -46,22 +47,33 @@ Page({
       }
     }
     this.setData({
-      typeList:typeList
+      typeList: typeList
     })
   },
   toUpload(path) {
+    const that = this;
+    let image = this.data.image;
     wx.uploadFile({ //上传图片到指定服务器
-      url: app.globalData.url + '/dmi/imageUpload.do', // 仅为示例，非真实的接口地址
+      url: 'https://www.hongfu951.com' + '/dmi/imageUpload.do', // 仅为示例，非真实的接口地址
       filePath: path,
       name: 'files',
+      data: {
+        userid: app.globalData.userId
+      },
       header: {
         'Content-Type': 'multipart/form-data'
       },
-      formData: {
-        user: 'test'
-      },
+      // formData: {
+      //   user: 'test'
+      // },
       success(res) {
         const data = res.data
+        // debugger
+        console.log('上传图片', JSON.parse(JSON.parse(data).value))
+        const data_1 = JSON.parse(JSON.parse(data).value);
+        that.setData({
+          image: image + ';' + data_1.fullWebPath
+        })
       }
     })
   },
@@ -131,6 +143,7 @@ Page({
   },
   onSubmit() {
     // 校验：文本输入和联系方式
+    const that = this;
     const textContent = this.data.textContent;
     const contact = this.data.contact;
     console.log(contact)
@@ -148,22 +161,54 @@ Page({
     }
     const reg_email = /^([a-zA-Z]|[0-9])(\w|\-)+@[a-zA-Z0-9]+\.([a-zA-Z]{2,4})$/;
     const reg_phone = /^[1][3,4,5,7,8][0-9]{9}$/;
-    if (contact != '') {
-      // 不符合电话也不符合邮箱规则
-      if (!reg_email.test(contact) && !reg_phone.test(contact)) {
-        this.setData({
-          warnMsg: '请输入正确的手机号或邮箱',
-          isRight: false
-        })
-        return
-      } else {
-        this.setData({
-          warnMsg: '',
-          isRight: true
-        })
 
-      }
+    // 不符合电话也不符合邮箱规则
+    if (contact != '' && !reg_email.test(contact) && !reg_phone.test(contact)) {
+      this.setData({
+        warnMsg: '请输入正确的手机号或邮箱',
+        isRight: false
+      })
+      return
+    } else {
+      this.setData({
+        warnMsg: '',
+        isRight: true
+      })
+
+
     }
+
+    // 开始提交
+    let obj = {
+      image: that.data.image,
+      type: that.data.type,
+      content: that.data.textContent,
+      group: 'xcx',
+      contact: that.data.contact,
+      userid: app.globalData.userId
+    }
+    wx.request({
+      url: app.globalData.url + '/dmi/user/usersuggest-save.do',
+      data: {
+        'data': JSON.stringify(obj)
+      },
+      success(res) {
+        if (res.data.code == 1) {
+          wx.showToast({
+            title: '提交成功',
+          })
+          setTimeout(function() {
+            wx.navigateBack({
+              delta: 1
+            })
+          }, 1000)
+        } else {
+          wx.showToast({
+            title: '提交失败',
+          })
+        }
+      }
+    })
   },
   /**
    * 生命周期函数--监听页面加载

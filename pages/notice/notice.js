@@ -1,4 +1,5 @@
 // pages/notice/notice.js
+let globalMethod = require('../../method/method.js');
 const app = getApp()
 Page({
 
@@ -35,6 +36,7 @@ Page({
     const that = this
     const data = {
       group: "xcx",
+      userId:app.globalData.userId,
       baby: {
         name: "baby",
         user: {
@@ -72,6 +74,10 @@ Page({
               title: '获取数据失败',
             })
             return
+        }
+        if(res.data.code == 2){
+          globalMethod.method.noLogin(app)
+        
         }
         let data = JSON.parse(res.data.value).contents
         console.log(data)

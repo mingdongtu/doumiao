@@ -1,3 +1,11 @@
-<view class='main'>
-<button open-type="getPhoneNumber" class='my_btn' bindgetphonenumber="getPhoneNumber">微信授权登录</button>
+<view class='main wechat_right ' wx:if='{{isRight}}'>
+<button open-type="getUserInfo" class='login_permit' bindgetuserinfo="getUserInfo">获取用户信息</button>
+<image src='/images/wechat.png' class="wechat_icon"></image>
+<text class="msg">获取用户信息</text>
+</view>
+
+<view class='main wechat_right ' wx:if='{{isWechat}}'>
+<button open-type="getPhoneNumber" class='login_permit' bindgetphonenumber="getPhoneNumber">授权登录</button>
+<image src='/images/wechat.png' class="wechat_icon"></image>
+<text class="msg">微信用户快速登录</text>
 </view>

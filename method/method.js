@@ -1,12 +1,23 @@
-
 let method = {
 
-  dealAge(t) {
+  dealAge(t, type) {
     // const t = 1553749943000;
     // const t = 1470096000000;
+
     // const t = 1546300800000
+    let t1;
+    let t2;
+    let t3
+    if (type = 1) {
+      t1 = parseInt(t.slice(0, 4))
+      t2 = parseInt(t.slice(4, 6))
+      t3 = new Date(t1, t2, 1).getTime()
+      
+    } else {
+    t3 = t
+    }
     const nowTime = new Date().getTime();
-    let babyAge = nowTime - t;
+    let babyAge = nowTime - t3;
     const yearNum = 31536000000;
     const monthNum = 2592000000;
     const dayNum = 86400000;
@@ -38,22 +49,48 @@ let method = {
       }
     }
 
-    return year + '岁' + month + '个月' + day + '天';
+   
+    // debugger
+    if (type = 1) {
+      return [year, month]
+    }else{
+      return year + '岁' + month + '个月' + day + '天';
+    }
 
   },
-   showLoading: function (msg) {
+  showLoading: function(msg) {
     wx.showLoading({
       title: msg,
       mask: true
     })
   },
+  noLogin(app) {
+    app.globalData.status = 0
+    wx.showModal({
+      title: '提示',
+      content: '当前用户尚未登录',
+      success(res) {
+        if (res.confirm) {
+          wx.navigateTo({
+            url: '/pages/login/login',
+          })
+        } else if (res.cancel) {
+          wx.navigateBack({
+            delta: 1
+          })
+        }
+      }
+    })
+    wx.hideLoading()
+    return
+  },
   // 隐藏动画
-  hideLoading: function (t) {
-    setTimeout(function () {
+  hideLoading: function(t) {
+    setTimeout(function() {
       wx.hideLoading()
     }, t)
   }
 }
 module.exports = {
-     method:method
+  method: method
 }

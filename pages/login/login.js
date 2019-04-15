@@ -6,26 +6,129 @@ Page({
    * 页面的初始数据
    */
   data: {
-     name:''
+     name:'涂明栋',
+     isRight:true,
+    isWechat:false
+  },
+  getUserInfo(e){
+    // debugger
+       console.log('获取用户信息',e)
+    if (e.detail.errMsg =='getUserInfo:ok'){ //成功授权
+        //  隐藏授权按钮
+       this.setData({
+         isRight:false,
+         isWechat:true
+       })
+    }
+
   },
   getPhoneNumber(e){
 
     console.log('手机号信息',e)
+    if (e.detail.errMsg =='getPhoneNumber:fail user deny'){
+       return
+    }
     var that = this
     var url= app.globalData.url
    wx.request({
-     url: app.globalData.url + '/dmi/user/user-update.do',
-     data:{
-       group:'xcx',
-       mobile: e.detail.encryptedData,
-       name:that.data.name
+     url: app.globalData.url + '/dmi/weixinapi/wx-user-update.do?group=xcx',
+    //  header: {
+    //    // 'content-type': 'application/x-www-form-urlencoded', // 默认值
+    //   //  'Accept': 'application/json',
+    //    'Content-Type': 'text/plain'
+    //   //  'Content-Type': 'json'
+
+    //  },
+    //  method: 'POST',
+     data: {
+       'data': JSON.stringify({
+         encryptedData: e.detail.encryptedData,
+         iv: e.detail.iv,
+         token: app.globalData.token,
+         name: this.data.name
+       })
      },
      success(reponse){
-           if(reponse.code == 1){
+      //  debugger
+           if(reponse.data.code == 1){
                 app.globalData.status = 1
-                wx.navigateBack({
-                  delta:1
-                })
+             app.globalData.userId = JSON.parse(reponse.data.value).userid
+            //  将userId 缓存起来
+             wx.setStorage({
+               key: 'userid',
+               data: JSON.parse(reponse.data.value).userid
+             })
+
+             wx.request({
+               url: app.globalData.url + '/dmi/weixinapi/getMyBaby.do',
+               data: {
+
+                 group: 'xcx',
+                 userid: JSON.parse(reponse.data.value).userid
+
+               },
+               success: function (res) {
+                 if (res.code == 1 && res.data.value) {
+
+                   const data = JSON.parse(res.data.value);
+                   // 对返回的数据进行处理
+                   let babyList = []
+                   for (let i = 0; i < data.length; i++) {
+                     let obj = {};
+                     // debugger
+                     obj.imgsrc = '../../../images/bao.png';
+                     obj.isSpread = false;
+                     obj.edit = 'no_edit';
+                     obj.name = data[i].name;
+                     obj.height = data[i].height;
+                     // obj.age = globalMethod.method.dealAge(data[i].birthDate);
+                     obj.weight = data[i].weight;
+                     obj.id = data[i].id;
+                     if (i == 0) {
+                       obj.isChoose = 1
+                     } else {
+                       obj.isChoose = 0
+                     }
+                     babyList.push(obj)
+                   }
+
+                   app.globalData.babyList = babyList
+                   app.globalData.babyId = babyList[0].id
+                 } else if (res.code == 0) {
+                   wx.showToast({
+                     title: '获取数据失败！',
+                   })
+                 } else if (res.code == 2) { //尚未登录
+                   app.globalData.status = 0
+                   wx.showModal({
+                     title: '提示',
+                     content: '当前用户尚未登录',
+                     success(res) {
+                       if (res.confirm) {
+                         wx.navigateTo({
+                           url: '/pages/login/login',
+                         })
+                       } else if (res.cancel) {
+
+                       }
+                     }
+                   })
+                   return
+                 }
+                 app.globalData.status = 1
+
+
+
+               }
+             })
+             wx.showToast({
+               title: '登录成功！',
+             })
+               setTimeout(function(){
+                 wx.navigateBack({
+                   delta: 1
+                 })
+               }, 1000)
            } else{
                wx.showToast({
                  title: '登录失败！',
@@ -36,46 +139,34 @@ Page({
    
 
 
-    // 快速登录
-    // wx.login({
-    //     success(res){
-    //      if(res.code){
-          
-    //        wx.request({
-    //          url: url + '/dmi/weixinapi/login.do',
-    //          data: {
-    //            encData: e.detail.encryptedData,
-    //            iv: e.detail.iv,
-    //            code:res.code
-    //          },
-    //          success(response) {
-    //            const data = JSON.parse(res.data.value)
-    //            if (data.code == 1) {
-    //             //  登录成功将token存储起来
-    //              app.globalData.token = response.data.session_key
-    //              wx.navigateBack({
-    //                delta: 1
-    //              })
-    //            }
-    //          }
-    //        })
-    //      }
-    //     }
-    // })
    
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    wx.getUserInfo({
-        success: res => {
-         
-          this.setData({
-            name: res.userInfo.nickName
+     //如果已经授权获取信息那么就不展示该按钮
+    //  return
+    
+     const that = this
+    wx.getSetting({
+      success: (res) => {
+        console.log('是否授权', res.authSetting['scope.userInfo']);
+        if (!res.authSetting['scope.userInfo']){ //没有授权
+              that.setData({
+                isRight: true,
+                isWechat: false
+              })
+        }else{
+          that.setData({
+            
+            isRight: false,
+            isWechat: true
           })
         }
-      })
+
+      }
+    })
   },
 
   /**

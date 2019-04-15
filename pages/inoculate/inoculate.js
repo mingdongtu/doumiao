@@ -26,6 +26,23 @@ Page({
     })
   },
   onRecord(){
+    // 判断宝宝是否为空
+    if (app.globalData.babyId==''){
+      wx.showModal({
+        title: '提示',
+        content: '请先添加宝宝',
+        success(res) {
+          if (res.confirm) {
+             wx.navigateTo({
+               url: '/pages/addBaby/addBaby',
+             })
+          } else if (res.cancel) {
+            console.log('用户点击取消')
+          }
+        }
+      })
+      return
+    }
     wx.navigateTo({
       url: '/pages/inoculate/record/record'
     })

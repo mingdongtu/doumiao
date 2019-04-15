@@ -1,5 +1,6 @@
 // pages/orderDetail/orderDetail.js
 const app = getApp();
+let globalMethod = require('../../method/method.js');
 Page({
 
   /**
@@ -17,8 +18,8 @@ Page({
     const year = t.getFullYear();
     const month = parseInt(t.getMonth()) < 10 ? 0 + '' + t.getMonth() : t.getMonth();
     const day = parseInt(t.getDate()) < 10 ? 0 + '' + t.getDate() : t.getDate()
-    const hour = parseInt(t.getHours()) < 10 ? 0 + '' + t.getHours(): t.getHours()
-    const minute = parseInt(t.getMinutes()) < 10 ? 0 + '' + t.getMinutes(): t.getMinutes() 
+    const hour = parseInt(t.getHours()) < 10 ? 0 + '' + t.getHours() : t.getHours()
+    const minute = parseInt(t.getMinutes()) < 10 ? 0 + '' + t.getMinutes() : t.getMinutes()
     return year + '-' + month + '-' + day + '  ' + hour + ':' + minute
 
   },
@@ -33,16 +34,26 @@ Page({
         group: 'xcx'
       },
       success(res) {
-        let data = JSON.parse(res.data.value)
-        console.log(data)
-        let detail = {};
-        // debugger
-        detail.vaccineDate = that.deal(data.vaccineDate);
-        detail.name = data.baby.name;
-        detail.address = data.baby.address
-        that.setData({
-             detail:detail
-        })
+        if (res.data.code == 1 && res.data.value) {
+          let data = JSON.parse(res.data.value)
+          console.log(data)
+          let detail = {};
+          detail.vaccineDate = that.deal(data.vaccineDate);
+          detail.name = data.baby.name;
+          detail.address = data.baby.address
+          that.setData({
+            detail: detail
+          })
+        }
+        if(res.data.code == 0){
+          wx.showToast({
+            title: '获取数据失败',
+          })
+          return
+        }
+        if(res.data.code==2){
+          globalMethod.method.noLogin(app)
+        }
 
       }
     })

@@ -1,4 +1,4 @@
-// pages/inoculate/search/search.js
+let globalMethod = require('../../../method/method.js');
 const app = getApp()
 Page({
 
@@ -6,6 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    name:'',
     list: [
 
     ],
@@ -17,6 +18,25 @@ Page({
       url: '/pages/inoculate/earch/earch'
     })
   },
+  bindKeyInput(e){
+  // debugger
+  let name = e.detail.value
+  this.setData({
+       name:name
+  })
+  
+  },
+  onconfirm(){
+    // debugger
+    if (this.data.name =='') {
+      wx.showToast({
+        title: '内容不能为空',
+      })
+      return
+    }
+    this.getData(1, this.data.name)
+  },
+  
   dealTime(t1) {
     let t = new Date(t1);
     const year = t.getFullYear();
@@ -44,27 +64,34 @@ Page({
       })
     }
   },
-  getData(pageNo) {
+  getData(pageNo,name) {
     let that = this;
     let mylist = this.data.list
     wx.showLoading({
       title: '加载中',
       mask: true
     })
+    let data = {
+      userid: app.globalData.userId,
+      // userid: 'befc5e09-4ce9-46f3-9bda-50350534ded2',
+      babyId: app.globalData.babyId,
+      // babyId: '3bf0c6f8-477b-4a49-80bd-ee4c341c5643',
+      pageNo: pageNo,
+      pageSize: 10,
+      group: 'xcx'
+    }
+    if (name !='@#$%'){ //搜索
+          data.name = name
+    }
     wx.request({
       url: app.globalData.url + '/dmi/weixinapi/getVaccinePlanRecord.do',
-      data: {
-        userId: 'befc5e09-4ce9-46f3-9bda-50350534ded2',
-        //  babyId: app.globalData.babyId,
-        babyId: '3bf0c6f8-477b-4a49-80bd-ee4c341c5643',
-        pageNo: pageNo,
-        pageSize: 10,
-        group: 'xcx'
-      },
+      data: data,
+      method:'POST',
       success(res) {
         // debugger
         wx.hideLoading()
         if (res.data.code == 1) {
+          
           if (res.data.value == 'null') {
             wx.showToast({
               title: '没有数据',
@@ -92,6 +119,9 @@ Page({
             list: mylist
           })
         }
+        if(res.data.code == 2){
+          globalMethod.method.noLogin(app)
+        }
 
 
       }
@@ -101,7 +131,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    this.getData(this.data.pageNo)
+    this.getData(this.data.pageNo,'@#$%')
   },
 
   /**

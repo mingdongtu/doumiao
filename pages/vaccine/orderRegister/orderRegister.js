@@ -128,10 +128,11 @@ Page({
       data.contact = this.data.contact
       data.contactMobile = 12398436224
       data.vaccineDate = this.data.clinicConfirmDate
+      data.userId = app.globalData.userId
       wx.request({
         url: app.globalData.url + '/dmi/vaccinevaccinationorder/vaccineVaccinationOrder-save.do',
         data:data,
-        headers: {
+        header: {
           'Accept': 'application/json',
           'Content-Type': 'text/plain'
         },

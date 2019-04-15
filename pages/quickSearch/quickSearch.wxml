@@ -1,0 +1,13 @@
+<view>
+  <view class='title'>
+      <text>疫苗名称</text>
+      <text>生产企业</text>
+      <text>疫苗批次号</text>
+  </view>
+    <view class='content' wx:for='{{vaccine}}'>
+      <text>{{item.name}}</text>
+      <text>{{item.company}}</text>
+      <text>{{item.batchNo}}</text>
+  </view>
+
+</view>

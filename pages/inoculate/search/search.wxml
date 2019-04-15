@@ -1,8 +1,8 @@
 <view class='search'>
   <view>
     <view class='search_input'>
-      <image src='../../../images/search.png'></image>
-      <input></input>
+      <image src='../../../images/search.png' ></image>
+      <input placeholder='请输入查询条件' bindinput="bindKeyInput" bindconfirm='onconfirm'></input>
     </view>
     <image src='../../../images/x.png'></image>
   </view>

@@ -1,0 +1,34 @@
+/* pages/quickSearch/quickSearch.wxss */
+.title{
+  padding:30rpx 20rpx;
+  background:#ccc;
+  display:flex;
+  justify-content:space-between;
+  font-size:32rpx;
+
+}
+.title>text{
+  text-align:left;
+}
+.title>text:nth-of-type(1),.title>text:nth-of-type(3){
+  display:inline-block;
+  width:25%;
+}
+.title>text:nth-of-type(2){
+display:inline-block;
+  width:50%;
+}
+.content{
+  font-size:30rpx;
+  border-bottom:1px solid #ccc;
+   padding:10rpx 20rpx;
+}
+.content>text:nth-of-type(1),.content>text:nth-of-type(3){
+  display:inline-block;
+  width:25%;
+  overflow:scroll;
+}
+.content>text:nth-of-type(2){
+display:inline-block;
+  width:50%;
+}
