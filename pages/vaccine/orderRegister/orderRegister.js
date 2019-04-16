@@ -8,6 +8,9 @@ Page({
   data: {
     relations: ['父子', '父女', '母女', '母子'],
     sexs: ['男', '女'],
+    babyList:['喜洋洋','美羊羊'],
+    myList:[],
+    babyIdx:0,
     idx: 0,
     index: 0,
     clinicConfirmDate: '2016-09-01',
@@ -17,7 +20,13 @@ Page({
     notifyFlag: 1,
     isChoose: false,
     warnMsg: '',
-    isWarn: false
+    isWarn: false,
+    vaccine:{
+       name:''
+    },
+    hospital:{
+       name:''
+    }
   },
   onChoose() {
     this.setData({
@@ -33,7 +42,7 @@ Page({
   },
   onInput(e) {
     this.setData({
-      contact: e.detail.value
+      // contact: this.data.babyList[this.data.babyIdx]
     })
 
   },
@@ -63,10 +72,20 @@ Page({
     this.isChecked = !this.isChecked
 
   },
+  onChooseVaccine(){
+       wx.navigateTo({
+         url: "/pages/vaccine/list/list",
+       })
+  },
+  onChooseHospital(){
+    wx.navigateTo({
+      url: "/pages/vaccine/hospital/hospital",
+    })
+  },
   onConfirm() { //确认预约
     //首先进行验证
     // debugger
-    if (this.data.contact.replace(/(^\s*)|(\s*$)/g, "") == '') {
+    if (this.data.babyList[this.data.babyIdx].replace(/(^\s*)|(\s*$)/g, "") == '') {
 
       this.setData({
         warnMsg: '宝宝姓名不能为空！',
@@ -112,23 +131,23 @@ Page({
       let data = {}
       data.group = "xcx";
       data.baby = {
-        id: '3bf0c6f8-477b-4a49-80bd-ee4c341c5643'
+        id: this.data.myList[this.data.babyIdx]
       };
       data.vaccine = {
-        id: "ec9ef102-e273-4686-8338-2add7c69356b"
+        id: this.data.vaccine.id
       }
       data.clinic = {
-        id: "35f57e93-1ae0-4195-9df3-ea75064bfb50"
+        id: this.data.hospital.id
       }
-      data.relationShip = this.data.relationShip
+      data.relationShip = this.data.relations[this.data.idx]
       data.clinicConfirmDate = this.data.clinicConfirmDate
       data.notifyFlag = this.data.notifyFlag
       data.notifyTime = this.data.clinicConfirmDate
       data.validFlag = 1
-      data.contact = this.data.contact
+      data.contact = this.data.babyList[this.data.babyIdx]
       data.contactMobile = 12398436224
       data.vaccineDate = this.data.clinicConfirmDate
-      data.userId = app.globalData.userId
+      data.userid = app.globalData.userId
       wx.request({
         url: app.globalData.url + '/dmi/vaccinevaccinationorder/vaccineVaccinationOrder-save.do',
         data:data,
@@ -161,7 +180,31 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    let babyList = app.globalData.babyList
+    let list = []
+    for (let i = 0; i < babyList.length;i++){
+        list.push(babyList[i].name)
+    }
 
+    this.setData({
+       babyList:list
+    })
+    // 判断是否来自选择疫苗页面
+   
+    if(app.globalData.vaccine){
+      const vaccine = app.globalData.vaccine
+      console.log('参数', vaccine)
+      this.setData({
+          vaccine:vaccine
+      })
+    }
+    if (app.globalData.hospital) {
+      const hospital = app.globalData.hospital
+      console.log('参数', hospital)
+      this.setData({
+        hospital: hospital
+      })
+    }
   },
 
   /**
@@ -175,7 +218,51 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
+    const that = this;
+    wx.request({
+      url: app.globalData.url + '/dmi/weixinapi/getMyBaby.do',
+      data: {
+        // userid: "befc5e09-4ce9-46f3-9bda-50350534ded2",
+        userid: app.globalData.userId,
+        group: 'xcx'
+      },
+      // method:'POST',
+      success: function (res) {
+        wx.hideLoading()
+        if (res.data.code == 0) {
+          wx.showToast({
+            title: '获取数据失败',
+          })
+          return
+        }
+        if (res.data.code == 2) {
+          globalMethod.method.noLogin(app)
+        }
+        const data = JSON.parse(res.data.value);
+        if (data.length == 1 && JSON.stringify(data[0]) == '{}') {
+          that.setData({
+            babyList: []
+          })
+          return
+        }
+        // 对返回的数据进行处理
+        let babyList = []
+        let myList= []
+        for (let i = 0; i < data.length; i++) {
+        
+          babyList.push(data[i].name)
+          myList.push(data[i].id)
+        }
+        // debugger
+        that.setData({
+          babyList: babyList,
+          myList: myList
+        })
 
+
+
+      }
+    })
   },
 
   /**

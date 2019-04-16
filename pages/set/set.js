@@ -19,7 +19,7 @@ Page({
         data:{
           group:'xcx',
           // userId:'26d544fb-b0ad-4c63-b2de-93c66ffab161'
-          userId:app.globalData.userId
+          userid:app.globalData.userId
         },
         success(res){
             console.log(res)

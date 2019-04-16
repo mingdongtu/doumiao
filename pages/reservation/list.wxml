@@ -1,0 +1,15 @@
+<!--pages/reservation/list.wxml-->
+<view class="section">
+<view class='section-add' catchtap='onReservationAdd'>
+     <image src='../../images/20.png'></image>
+     <text>新增预约</text>
+  </view>
+<scroll-view class='section-list' >
+    <view id="{{item.id}}" class='section-item' wx:for="{{list}}" wx:for-item="item" wx:for-index="id" wx:key="unique" bindtap='onReservatoinInfo' >
+          <text class='item_baby_name' id="{{item.id}}">姓名：{{item.baby.name}}</text>
+          <text class='item_vaccineDate' id="{{item.id}}">日期：{{item.vaccineDate}}</text>
+          <text class='item_clinic_name' id="{{item.id}}">诊所名称：{{item.clinic.name}}</text>
+          <text class='item_vaccine_name' id="{{item.id}}">疫苗名称:{{item.vaccine.name}}</text>
+    </view>
+</scroll-view>
+</view>

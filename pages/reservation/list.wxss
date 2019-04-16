@@ -1,0 +1,76 @@
+/* pages/reservation/list.wxss */
+.section{
+  margin: 0 auto;
+  padding: 0 auto;
+  width:100%;
+  height:100%;
+}
+
+.section-add{
+   display:flex;
+   justify-content: center;
+   align-items:center;
+   /* font-size: */
+   color:#fff;
+   width:100%;
+   height:20%;
+   background:#19c471;}
+ .section-add>image{
+     width:20px;
+     height:20px;
+     margin-right:10px;
+ }
+
+ .section-list{
+   margin: 0 auto;
+   padding: 0 auto;
+   width: 100%;
+   height: 80%;
+ }
+
+ .section-item{
+   margin: 0 auto;
+   padding: 0 auto;
+   width: 100%;
+   height: 120rpx;
+   font-size: 22rpx;
+   border-bottom: solid 1px #cccccc;
+ }
+
+ .item_baby_name{
+   float: left;
+   margin: 0 auto;
+   padding: 0 0 0 2%;
+   width: 48%;
+   height: 50%;
+   line-height: 220%;
+ }
+
+ .item_vaccineDate{
+   float: right;
+   margin: 0 auto;
+   padding: 0 auto;
+   width: 50%;
+   height: 50%;
+   line-height: 220%;
+   text-align: left;
+ }
+ 
+ .item_clinic_name{
+   float: left;
+   margin: 0 auto;
+   padding: 0 0 0 2%;
+   width: 48%;
+   height: 50%;
+   line-height: 220%;
+ }
+
+ .item_vaccine_name{
+   float: right;
+   margin: 0 auto;
+   padding: 0 auto;
+   width: 50%;
+   height: 50%;
+   line-height: 220%;
+   text-align: left;
+ }

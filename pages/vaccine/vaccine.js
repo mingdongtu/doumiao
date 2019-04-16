@@ -7,7 +7,7 @@ Page({
   data: {
     tab_list:[
       { src: '../../images/9.png', value: '接种证', path:'/pages/inoculate/inoculate'},
-      { src: '../../images/8.png', value: '疫苗预约', path:'/pages/vaccine/orderRegister/orderRegister' },
+      { src: '../../images/8.png', value: '疫苗预约', path: '/pages/reservation/list' },
       { src: '../../images/7.png', value: '疫苗快查', path:'/pages/vaccine/vaccineSearch/vaccineSearch' },
       { src: '../../images/6.png', value: '宝宝信息', path:'/pages/myBaby/baby/baby' }
     ],

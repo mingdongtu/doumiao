@@ -1,7 +1,8 @@
 {
   "pages": [
- 
+   
     "pages/vaccine/vaccine",
+    "pages/vaccine/orderRegister/orderRegister",
     "pages/inoculate/search/search",
     "pages/vaccine/vaccineSearch/vaccineSearch",
     "pages/addBaby/addBaby",
@@ -13,7 +14,6 @@
     "pages/notice/notice",
     "pages/vaccine/map/map",
     "pages/vaccine/order/order",
-    "pages/vaccine/orderRegister/orderRegister",
     "pages/logs/logs",
     "pages/myBaby/myBaby",
     "pages/orderDetail/orderDetail",
@@ -22,9 +22,11 @@
     "pages/inoculate/cinne/cinne",
     "pages/inoculate/earch/earch",
     "pages/login/login",
-    "pages/quickSearch/quickSearch"
-     
-    
+    "pages/quickSearch/quickSearch",
+    "pages/reservation/list",
+    "pages/reservation/info",
+    "pages/vaccine/list/list",
+    "pages/vaccine/hospital/hospital"
   ],
   "window": {
     "backgroundTextStyle": "light",

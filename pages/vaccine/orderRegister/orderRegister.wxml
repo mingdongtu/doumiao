@@ -4,9 +4,29 @@
   </view>
   <view class='all_input'>
     <view>
-      <text>接种人姓名</text>
-      <input placeholder='必填' placeholder-style='text-align:right;' class='input_1' bindinput='onInput'></input>
+      <text>选择接种疫苗</text>
+      <view catchtap='onChooseVaccine'>
+        <text>{{vaccine.name}}</text>
+        <image src='../../../images/17.png' class='arrow'></image>
+      </view>
     </view>
+     <view>
+      <text>选择接种诊所</text>
+      <view catchtap='onChooseHospital'>
+        <text>{{hospital.name}}</text>
+        <image src='../../../images/17.png' class='arrow'></image>
+      </view>
+    </view>
+    <view class='all_picker'>
+      <text>接种人姓名</text>
+      <view>
+        <picker class='picker' mode='selector' bindchange="bindPickerChange" range='{{babyList}}' value='{{babyIdx}}'>
+          <view>{{babyList[babyIdx]}}</view>
+        </picker>
+        <image src='../../../images/17.png' class='arrow'></image>
+      </view>
+    </view>
+
     <view class='all_picker'>
       <text>您与接种人关系</text>
       <view>
@@ -38,7 +58,7 @@
   </view>
 
   <view class='tip'>该接种点有疫苗，可直接预约接种咨询日期</view>
-   <view class='warn tip' wx:if='{{isWarn}}'>{{warnMsg}}</view>
+  <view class='warn tip' wx:if='{{isWarn}}'>{{warnMsg}}</view>
   <view class='order'>
     <view class='confirm'>
       <image src='../../../images/y.png' wx:if='{{isChoose}}' catchtap='onChoose'></image>

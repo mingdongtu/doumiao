@@ -21,7 +21,7 @@
   </view>
 
   <!-- 去添加宝宝 -->
-  <view class='addBaby' catchtap='addBaby'>
+  <view class='addBaby' catchtap='addBaby' wx-if='{{babyList.length==0}}'>
      <image src='../../../images/20.png'></image>
      <text>去添加宝宝</text>
   </view>
