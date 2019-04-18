@@ -27,6 +27,9 @@ Page({
               app.globalData.status = 0
               // 清除缓存
               wx.removeStorageSync('userid')
+              app.globalData.userId = null;
+              app.globalData.babyList = [];
+              app.globalData.userId = null;
                 wx.showToast({
                   title: '退出成功！'
                 })

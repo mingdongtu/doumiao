@@ -33,7 +33,7 @@ Page({
          id:list[index].id
     }
     app.globalData.vaccine = obj
-    wx.navigateTo({
+    wx.redirectTo({
       url: '/pages/vaccine/orderRegister/orderRegister?vaccine='+JSON.stringify(obj),
     })
   },

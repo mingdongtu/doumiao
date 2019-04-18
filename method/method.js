@@ -8,7 +8,8 @@ let method = {
     let t1;
     let t2;
     let t3
-    if (type = 1) {
+    // debugger
+    if (type == 1) {
       // t1 = parseInt(t.slice(0, 4))
       // t2 = parseInt(t.slice(4, 6))
       // t3 = new Date(t1, t2, 1).getTime()
@@ -54,7 +55,7 @@ let method = {
 
    
     // debugger
-    if (type = 1) {
+    if (type == 1) {
       return [year, month]
     }else{
       return year + '岁' + month + '个月' + day + '天';

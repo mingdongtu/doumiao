@@ -8,7 +8,7 @@ Page({
   data: {
     region: ['广东省', '广州市', '海珠区'],
     customItem: '全部',
-    relations: ['父女', '母女', '爷爷', '奶奶', '阿姨', '叔叔', '外公', '外婆'],
+    relations: ['父子', '父女', , '母女', '母子'],
     sexs: ['男', '女'],
     realation: '父女',
     sex: '男',
@@ -20,16 +20,17 @@ Page({
     weight: '',
     eat: '',
     name: '',
-    isWarn: false
+    isWarn: false,
+    nowDate: ''
   },
   onScan() {
     const that = this;
     wx.scanCode({
       success(res) {
         console.log(res)
-       that.setData({
-           code:res.result
-       })
+        that.setData({
+          code: res.result
+        })
       }
     })
   },
@@ -37,7 +38,7 @@ Page({
     let data = {
       name: this.data.name,
       birthDate: this.data.clinicConfirmDate,
-      sex: this.data.sex=='男'?1:2,
+      sex: this.data.sex == '男' ? 1 : 2,
       weight: this.data.weight,
       height: this.data.height,
       group: 'xcx',
@@ -64,7 +65,7 @@ Page({
     wx.request({
       url: app.globalData.url + '/dmi/baby/baby-save.do',
       data: {
-          'data':JSON.stringify(data)
+        'data': JSON.stringify(data)
       },
       // header: {
       //   // 'content-type': 'application/x-www-form-urlencoded', // 默认值
@@ -74,29 +75,32 @@ Page({
       // },
       // method: 'POST',
       success(res) {
-        if(res.data.code == 0){
+        if (res.data.code == 0) {
           wx.showModal({
             title: '提示',
             content: res.data.msg,
-            showCancel:true,
+            showCancel: true,
             success(res) {
               if (res.confirm) {
-                
+
               }
             }
           })
-       
+
           return
         }
         wx.showToast({
           title: '添加成功',
         })
-        setTimeout(function(){
-               wx.navigateBack({
-                    delta:1
-               })
-        },1000)
-        
+        setTimeout(function() {
+           wx.navigateBack({
+                delta:1
+           })
+          // wx.redirectTo({
+          //   url: '/pages/myBaby/baby/baby',
+          // })
+        }, 1000)
+
       }
     })
   },
@@ -155,7 +159,13 @@ Page({
     })
   },
   onLoad: function(options) {
-
+    let date = new Date();
+    const year = date.getFullYear();
+    const month = date.getMonth() + 1 < 10 ? 0 + (date.getMonth() + 1) : date.getMonth() + 1;
+    const day = date.getDate();
+    this.setData({
+      nowDate: year + '-' + month + '-' + day
+    })
   },
 
   /**

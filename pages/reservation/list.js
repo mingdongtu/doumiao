@@ -10,7 +10,14 @@ Page({
     pageNo:1,
     pageSize:10
   },
+  dealTime(t1) {
+    let t = new Date(t1);
+    const year = t.getFullYear();
+    const month = parseInt(t.getMonth()) < 10 ? 0 + '' + t.getMonth() : t.getMonth();
+    const day = parseInt(t.getDate()) < 10 ? 0 + '' + t.getDate() : t.getDate()
 
+    return year + '.' + month + '.' + day
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -50,7 +57,10 @@ Page({
             return;
           }
           const data = JSON.parse(res.data.value);
-          const list = data.contents;
+          let list = data.contents;
+          for(let i=0;i<list.length;i++){
+            list[i].vaccineDate = that.dealTime(list[i].vaccineDate)
+          }
           that.setData({
             list: list
           })

@@ -27,7 +27,7 @@
   <view class='my_avatar my_baby' catchtap='onOrder'>
     <view>
       <text class='icon_order icon_common'></text>
-      <text>我的预约</text>
+      <text>预约提醒</text>
     </view>
     <text class='icon_arrow'>  </text>
   </view>

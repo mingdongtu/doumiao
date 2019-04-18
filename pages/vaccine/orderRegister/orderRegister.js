@@ -21,6 +21,8 @@ Page({
     isChoose: false,
     warnMsg: '',
     isWarn: false,
+    myBaby:'',
+    nowDate:'',
     vaccine:{
        name:''
     },
@@ -36,7 +38,7 @@ Page({
   bindPickerChange(e) {
     this.setData({
       idx: e.detail.value,
-      relationShip: relations[e.detail.value]
+      relationShip: this.data.relations[e.detail.value]
     })
 
   },
@@ -45,6 +47,13 @@ Page({
       // contact: this.data.babyList[this.data.babyIdx]
     })
 
+  },
+  bindBabyhange(e){
+    console.log('picker发送选择改变，携带值为', e.detail.value)
+    this.setData({
+     
+      babyIdx: e.detail.value
+    })
   },
   bindDateChange(e) {
     console.log('picker发送选择改变，携带值为', e.detail.value)
@@ -73,12 +82,12 @@ Page({
 
   },
   onChooseVaccine(){
-       wx.navigateTo({
+    wx.redirectTo({
          url: "/pages/vaccine/list/list",
        })
   },
   onChooseHospital(){
-    wx.navigateTo({
+    wx.redirectTo({
       url: "/pages/vaccine/hospital/hospital",
     })
   },
@@ -165,6 +174,11 @@ Page({
                  icon: 'success',
                  duration: 1000
                })
+               setTimeout(function(){
+                   wx.redirectTo({
+                     url: '/pages/reservation/list',
+                   })
+               },1000)
              }else{
                wx.showToast({
                  title: '预约失败',
@@ -180,6 +194,34 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+  // 首先判断是否有宝宝
+  if(app.globalData.babyList.length==0){
+    wx.showModal({
+      title: '提示',
+      content: '请先去添加宝宝',
+      success(res) {
+        if (res.confirm) {
+         wx.navigateTo({
+           url: '/pages/addBaby/addBaby',
+         })
+        } else if (res.cancel) {
+            wx.navigateBack({
+               delta:1
+            })
+        }
+      }
+    })
+    return
+  }
+
+
+    let date = new Date();
+    const year = date.getFullYear();
+    const month = date.getMonth() + 1 < 10 ? 0 + (date.getMonth() + 1) : date.getMonth() + 1;
+    const day = date.getDate();
+    this.setData({
+      nowDate: year + '-' + month + '-' + day
+    })
     let babyList = app.globalData.babyList
     let list = []
     for (let i = 0; i < babyList.length;i++){

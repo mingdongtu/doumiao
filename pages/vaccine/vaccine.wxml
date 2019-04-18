@@ -20,7 +20,7 @@
       </view>
       <view class='comment'>
         <text>{{item.website}} {{item.commentNum}}</text>
-        <image src='../../images/5.png' class='delete'></image>
+        <!-- <image src='../../images/5.png' class='delete'></image> -->
       </view>
     </view>
     <image src='{{item.coverSrc}}' class='news_img'></image>

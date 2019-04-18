@@ -90,6 +90,7 @@ Page({
         }
         // 对返回的数据进行处理
         let babyList = []
+        console.log('宝宝数据',data)
         for (let i = 0; i < data.length; i++) {
           let obj = {};
           // debugger

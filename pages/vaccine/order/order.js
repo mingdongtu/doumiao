@@ -1,27 +1,27 @@
 // pages/vaccine/order/order.js
+const app = getApp();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-     orderList:[
-       { location_1: '深圳市南山区高新园大冲国际中心', distance: '10公里', location_2: 'E座20楼', time:'08:30-21:30'},
-       { location_1: '深圳市南山区高新园大冲国际中心', distance: '10公里', location_2: 'E座20楼', time: '08:30-21:30' },
-       { location_1: '深圳市南山区高新园大冲国际中心', distance: '10公里', location_2: 'E座20楼', time: '08:30-21:30' },
-       { location_1: '深圳市南山区高新园大冲国际中心', distance: '10公里', location_2: 'E座20楼', time: '08:30-21:30' },
-       { location_1: '深圳市南山区高新园大冲国际中心', distance: '10公里', location_2: 'E座20楼', time: '08:30-21:30' },
-       { location_1: '深圳市南山区高新园大冲国际中心', distance: '10公里', location_2: 'E座20楼', time: '08:30-21:30' }
-     ]
+     orderList:[],
+     id:"",
+     latitude:0,
+     longitude:0
   },
-  onMap(){
+  onMap(e){
+    console.log(e);
+    var latitude = this.data.latitude;
+    var longitude = this.data.longitude;
      wx.navigateTo({
-       url: '/pages/vaccine/map/map',
+       url: '/pages/vaccine/map/map?id=' + e.target.id + "&latitude=" + latitude + "&longitude=" + longitude,
      })  
   },
-  onCall(){
+  onCall(e){
     wx.makePhoneCall({
-      phoneNumber: '13798436224' // 仅为示例，并非真实的电话号码
+      phoneNumber: e.currentTarget.dataset.tel  // 仅为示例，并非真实的电话号码
     })
   },
   onRegister(){
@@ -33,7 +33,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.onloadNearClinicData();
   },
 
   /**
@@ -83,5 +83,44 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+  onloadNearClinicData:function(){
+    var that = this;
+    
+    wx.getSetting({
+      success(res) {
+        // debugger
+        if (res.authSetting['scope.userInfo']) {
+          wx.getLocation({
+            type: 'gcj02',
+            success(res) {
+              const latitude = res.latitude;
+              const longitude = res.longitude;
+              that.setData({
+                latitude: latitude,
+                longitude: longitude
+              });
+              wx.request({
+                url: app.globalData.url + '/dmi/weixinapi/getNearByClinic.do?longitude=' + longitude + '&latitude=' + latitude + '&pageNo=1&pageSize=100&group=xcx',
+                success(res) {
+                  if (res.data.code != 1) {
+                    wx.showToast({
+                      title: '网络错误',
+                    })
+                    return
+                  }
+                  if (res.data.value && res.data.value != "null") {
+                    let data = JSON.parse(res.data.value).contents;
+                    that.setData({
+                      orderList: data
+                    })
+                  }
+                }
+              })
+            }
+          })
+        }
+      }
+    })
   }
 })

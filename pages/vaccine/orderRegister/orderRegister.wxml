@@ -5,12 +5,12 @@
   <view class='all_input'>
     <view>
       <text>选择接种疫苗</text>
-      <view catchtap='onChooseVaccine'>
+      <view catchtap='onChooseVaccine' class='common'>
         <text>{{vaccine.name}}</text>
         <image src='../../../images/17.png' class='arrow'></image>
       </view>
     </view>
-     <view>
+     <view class='common'>
       <text>选择接种诊所</text>
       <view catchtap='onChooseHospital'>
         <text>{{hospital.name}}</text>
@@ -20,7 +20,7 @@
     <view class='all_picker'>
       <text>接种人姓名</text>
       <view>
-        <picker class='picker' mode='selector' bindchange="bindPickerChange" range='{{babyList}}' value='{{babyIdx}}'>
+        <picker class='picker' mode='selector' bindchange="bindBabyhange" range='{{babyList}}' value='{{babyIdx}}'>
           <view>{{babyList[babyIdx]}}</view>
         </picker>
         <image src='../../../images/17.png' class='arrow'></image>
@@ -40,7 +40,7 @@
     <view class='all_picker'>
       <text>接种人出生日期</text>
       <view>
-        <picker class='picker' mode='date' value="{{clinicConfirmDate}}" start="2015-09-01" end="2017-09-01" bindchange="bindDateChange">
+        <picker class='picker' mode='date' value="{{clinicConfirmDate}}" start="2010-09-01" end="{{nowDate}}" bindchange="bindDateChange">
           <view>{{clinicConfirmDate}}</view>
         </picker>
         <image src='../../../images/17.png' class='arrow'></image>

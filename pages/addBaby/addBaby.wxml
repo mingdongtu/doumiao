@@ -69,7 +69,7 @@
       <text>宝宝生日</text>
     </view>
     <view>
-      <picker class='picker' mode='date' value="{{clinicConfirmDate}}" start="2015-09-01" end="2017-09-01" bindchange="bindDateChange">
+      <picker class='picker' mode='date' value="{{clinicConfirmDate}}" start="2010-09-01" end="{{nowDate}}" bindchange="bindDateChange">
         <view>{{clinicConfirmDate}}</view>
       </picker>
       <image src='../../images/17.png' class='arrow'></image>
